@@ -1,67 +1,75 @@
-<!doctype html>
-<html lang="en" ng-app="noExcel">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-    <meta name="viewport"content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-  <title>NoExcel</title>
-  <link rel="stylesheet" href="css/angular-material.css"/>
-    <link rel="stylesheet" href="css/themes/green-theme.css">
-  <link rel="stylesheet" href="css/signin.css"/>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/no-excel.png">
 
-  <link rel="shortcut icon" type="image/x-icon" href="img/no-excel.png"/>
+    <title>NoExcel</title>
 
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="css/material-fullpalette.min.css" rel="stylesheet">
+		
+    <link href="css/roboto.min.css" rel="stylesheet">
+	
+	<link href="css/ripples.min.css" rel="stylesheet">
+	
+    <link href="css/material.min.css" rel="stylesheet">
+    
+    
 
-</head>
-<body layout="column" >
-<md-content layout="column" layout-align="center center" layout-align="top center" class="signin">
-    <div class="app-content">
-        <md-toolbar class="md-primary">
-            <h1 class="md-toolbar-tools" layout="text-center">
-                Login do Usuário
-            </h1>
-        </md-toolbar>
-        <div class="card card-signin">
-            <img class="img-circle profile-img" src="img/no-excel.png">
-            <div class="form-control-wrapper">
-                <form name="loginForm" ng-submit="login()" novalidate>
-                    <md-input-container>
-                        <label>Usuário</label>
-                        <input type="text" ng-required="true" name="username" ng-model="user.username">
-                        <div ng-messages="loginForm.username.$error" ng-show="loginForm.username.$invalid && loginForm.username.$touched">
-                            <div ng-message="required">Campo Usuário deve ser preenchido.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Senha</label>
-                        <input type="password" ng-required="true" name="password" ng-model="user.password">
-                        <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$invalid && loginForm.password.$touched">
-                            <div ng-message="required">Campo Senha deve ser preenchido.</div>
-                        </div>
-                    </md-input-container>
-                    <div class="loginBtn">
-                        <md-button type="submit" class="md-raised md-primary">Entrar</md-button>
-                    </div>
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+    
+    <link href="css/style.css" rel="stylesheet">
 
-                    <div class="checkbox">
-                        <md-checkbox ng-model="loginForm.remember" aria-label="Lembrar Login" ng-true-value="'yes'" ng-false-value="'nope'" class="md-primary">
-                            Continuar logado
-                        </md-checkbox>
+  </head>
 
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</md-content>
-    <script type="text/javascript" src="js/lib/angular.min.js"></script>
-    <script type="text/javascript" src="js/lib/angular-route.min.js"></script>
-    <script type="text/javascript" src="js/lib/angular-aria.min.js"></script>
-    <script type="text/javascript" src="js/lib/angular-animate.min.js"></script>
-    <script type="text/javascript" src="js/lib/hammer.min.js"></script>
-    <script type="text/javascript" src="js/lib/angular-material.js"></script>
-    <script type="text/javascript" src="js/lib/angular-messages.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/controllers/registration.js"></script>
+  <body class=" hasGoogleVoiceExt">
+
+    <div class="container">
+	<div>
+      <h2 class="form-signin-heading text-center">Login no Sistema No-Excel</h2>
+      <div class="card-s card-signin">
+        <img class="img-circle profile-img" src="img/no-excel.png" alt="">
+        <form class="form-signin">
+          <div class="form-control-wrapper">
+          <div class="form-group">
+    		<input class="form-control" id="userInput" placeholder="Usuário" type="text">
+		</div>
+		
+		<div class="form-group">
+    		<input class="form-control" id="pswdInput" placeholder="Senha"  type="password">
+		</div>
+          <div class="form-group">
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+		</div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me"> Lembrar senha
+            </label>
+          </div>
+		</div>
+        </form>
+      </div>
+	</div>
+
+    </div> <!-- /container -->
+        <script src="js/jquery-2.1.3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/ripples.min.js"></script>
+        <script src="js/material.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+        </script>
+
 </body>
 </html>

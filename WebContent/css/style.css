@@ -27,8 +27,8 @@ md-list .md-button {
     width: 100%;
 }
 .logo{
-    height: 48px;
-    width: 58px;
+    height: 40px;
+    width: 50px;
 }
 /* Using Data-URI converted from svg until <md-icon> becomes available
 https://github.com/google/material-design-icons
@@ -44,3 +44,9 @@ html, body {
     color: rgba(0, 0, 0, 0.87);
     background: #F7F7F7;;
     position: relative; }
+    
+
+
+.glyphicon {
+	top: 5px;
+}

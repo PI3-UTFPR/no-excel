@@ -14,17 +14,17 @@
 
     <!-- Bootstrap core CSS -->
     <link href="<%= request.getContextPath() %>/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <link href="<%= request.getContextPath() %>/css/material-fullpalette.min.css" rel="stylesheet">
-		
+
     <link href="<%= request.getContextPath() %>/css/roboto.min.css" rel="stylesheet">
-	
+
 	<link href="<%= request.getContextPath() %>/css/ripples.min.css" rel="stylesheet">
-	
+
     <link href="<%= request.getContextPath() %>/css/material.min.css" rel="stylesheet">
-    
+
     <!-- Custom styles for this template -->
-    
+
     <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">
 
   </head>

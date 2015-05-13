@@ -1,9 +1,9 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
-import javax.servlet.RequestDispatcher;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CreateAdminServlet
+ * Servlet implementation class CreateDatabase
  */
-@WebServlet("/admin/users/create")
-public class CreateAdminServlet extends HttpServlet {
+@WebServlet("/CreateDatabase")
+public class CreateDatabase extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateAdminServlet() {
+    public CreateDatabase() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,17 +29,14 @@ public class CreateAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String address = "/views/createAdmin.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("noexcel");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String param = request.getParameter("login");
-		System.out.println(param);
+		// TODO Auto-generated method stub
 	}
 
 }

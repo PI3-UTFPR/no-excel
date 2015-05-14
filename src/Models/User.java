@@ -1,11 +1,19 @@
 package Models;
 
-import javax.persistence.Table;
+import javax.persistence.Entity;
 
-@Table(name="Person")
+@Entity
 public class User extends Person{
 	private String username;
 	private String password;
+	
+	public User(){}
+	
+	public User(String name, String login, String password){
+		setName(name);
+		setUsername(login);
+		setPassword(password);
+	}
 	
 	public String getUsername() {
 		return username;
@@ -18,7 +26,5 @@ public class User extends Person{
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	
+	}	
 }

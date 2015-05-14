@@ -3,6 +3,7 @@
 	<persistence-unit name="noexcel">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>Models.Person</class>
+		<class>Models.User</class>
 		
 		<properties>
 		  <property name="javax.persistence.jdbc.driver"

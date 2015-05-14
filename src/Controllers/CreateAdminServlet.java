@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Models.User;
+import Util.JPAUtil;
+import Util.UserDAO;
+
 /**
  * Servlet implementation class CreateAdminServlet
  */
@@ -38,8 +42,11 @@ public class CreateAdminServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String param = request.getParameter("login");
-		System.out.println(param);
+		String name = request.getParameter("name");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
+		UserDAO userDAO = new UserDAO(JPAUtil.getEntityManager());
+		userDAO.save(new User(name, login, password));
 	}
 
 }

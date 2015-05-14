@@ -1,4 +1,4 @@
-package Controllers;
+package Database;
 
 import java.io.IOException;
 
@@ -22,7 +22,6 @@ public class CreateDatabase extends HttpServlet {
      */
     public CreateDatabase() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -30,13 +29,14 @@ public class CreateDatabase extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("noexcel");
+		emf.close();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 }

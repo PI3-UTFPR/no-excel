@@ -1,7 +1,6 @@
 package Controllers;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +25,6 @@ public class CreateAdminServlet extends HttpServlet {
      */
     public CreateAdminServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

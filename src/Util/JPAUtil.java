@@ -7,20 +7,17 @@ import javax.persistence.Persistence;
 
 public final class JPAUtil {
 	
-	private static String PERSISTENCE_UNIT = "noexcel";
-	
-	private static ThreadLocal<EntityManager> threadEntityManager =
-			new ThreadLocal<EntityManager>();
-	
+	private static String PERSISTENCE_UNIT = "noexcel";	
+	private static ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();	
 	private static EntityManagerFactory entityManagerFactory;
-	private EntityManager entityManager;
-	
-	private JPAUtil() {}
+	//private EntityManager entityManager;	
+	//private JPAUtil() {}
 	
 	public JPAUtil(String persistenceUnit) {
 		PERSISTENCE_UNIT = persistenceUnit;
 		getEntityManager();
-	}    
+	}  
+	
  
     public static void beginTransaction(){
     	EntityManager entityManager = threadEntityManager.get();    	
@@ -45,6 +42,7 @@ public final class JPAUtil {
     		entityManager.getTransaction().commit();
     	}        
     }
+    
          
     public static void rollBack(){
     	EntityManager entityManager = threadEntityManager.get();    	
@@ -64,8 +62,7 @@ public final class JPAUtil {
 		EntityManager entityManager = null;
 		try{
 			if (entityManagerFactory == null) {
-				entityManagerFactory =
-					Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+				entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 			}
 			
 			entityManager = threadEntityManager.get();
@@ -80,6 +77,7 @@ public final class JPAUtil {
 		return entityManager;
 	}
 	
+	
 	public static void closeEntityManager() {
 		EntityManager em = threadEntityManager.get();
 		
@@ -89,11 +87,9 @@ public final class JPAUtil {
 		}
 	}
 	
+	
 	public static void closeEntityManagerFactory() {		
 		closeEntityManager();
 		entityManagerFactory.close();		
 	}	
 }
-
-
-

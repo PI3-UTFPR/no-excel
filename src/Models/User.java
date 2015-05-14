@@ -1,8 +1,6 @@
 package Models;
 
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 @Entity
 public class User extends Person{

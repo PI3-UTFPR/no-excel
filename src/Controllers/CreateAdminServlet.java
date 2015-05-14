@@ -45,8 +45,12 @@ public class CreateAdminServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		UserDAO userDAO = new UserDAO(JPAUtil.getEntityManager());
-		userDAO.save(new User(name, login, password));
+		try{
+			UserDAO userDAO = new UserDAO(JPAUtil.getEntityManager());
+			userDAO.save(new User(name, login, password));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

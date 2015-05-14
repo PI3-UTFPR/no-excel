@@ -60,18 +60,23 @@ public final class JPAUtil {
     	}
     }    
 	
-	public static EntityManager getEntityManager() {		
-		if (entityManagerFactory == null) {
-			entityManagerFactory =
-				Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
-		}		
-		EntityManager entityManager = threadEntityManager.get();
-		
-		if (entityManager == null || !entityManager.isOpen()) {
-			entityManager = entityManagerFactory.createEntityManager();
-			JPAUtil.threadEntityManager.set(entityManager);
+	public static EntityManager getEntityManager() {
+		EntityManager entityManager = null;
+		try{
+			if (entityManagerFactory == null) {
+				entityManagerFactory =
+					Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+			}
+			
+			entityManager = threadEntityManager.get();
+			
+			if (entityManager == null || !entityManager.isOpen()) {
+				entityManager = entityManagerFactory.createEntityManager();
+				JPAUtil.threadEntityManager.set(entityManager);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		
 		return entityManager;
 	}
 	

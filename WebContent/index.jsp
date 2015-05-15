@@ -36,14 +36,14 @@
       <h2 class="form-signin-heading text-center">Login no Sistema NoExcel</h2>
       <div class="card-s card-signin">
         <img class="img-circle profile-img" src="img/no-excel.png" alt="">
-        <form class="form-signin">
+        <form class="form-signin" action="login" method="post">
           <div class="form-control-wrapper">
           <div class="form-group">
-    		<input class="form-control" id="userInput" placeholder="Usuário" type="text">
+    		<input class="form-control" id="userInput" placeholder="Usuário" type="text" name="username">
 		</div>
 		
 		<div class="form-group">
-    		<input class="form-control" id="pswdInput" placeholder="Senha"  type="password">
+    		<input class="form-control" id="pswdInput" placeholder="Senha"  type="password" name="password">
 		</div>
           <div class="form-group">
           <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>

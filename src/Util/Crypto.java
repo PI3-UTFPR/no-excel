@@ -2,11 +2,11 @@ package Util;
 
 public class Crypto {
 	
-	public String encrypt(String password) {
-		return BCrypt.hashpw(password, BCrypt.gensalt(12));
+	public String encrypt(String text) {
+		return BCrypt.hashpw(text, BCrypt.gensalt(10));
     }
      
-    public boolean checkHash(String password, String hashed)  {
-    	return BCrypt.checkpw(password, hashed);
+    public boolean checkHash(String text, String hashed)  {
+    	return BCrypt.checkpw(text, hashed);
     }
 }

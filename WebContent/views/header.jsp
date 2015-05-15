@@ -23,6 +23,8 @@
 	
     <link href="../css/material.min.css" rel="stylesheet">
     
+    <link href="../css/bootstrap-material-datepicker.css" rel="stylesheet">
+    
     <!-- Custom styles for this template -->
     
     <link href="../css/style.css" rel="stylesheet">

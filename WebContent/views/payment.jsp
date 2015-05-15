@@ -5,7 +5,7 @@
 
 	<div class="panel panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Pagamento</h3>
+        <h3 class="panel-title">Transação</h3>
     </div>
     <div class="panel-body">
         <form action="">
@@ -32,21 +32,39 @@
 			
 			<div class="form-group">
             <label class="control-label">Operação</label>
-            <div class="col-lg-10">
-                <div class="radio radio-primary">
+            
+            
+            	<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Fazer Pagamento</h3>
+    </div>
+    <div class="panel-body">
+        <div class="radio radio-primary">
                     <label>
                         <input type="radio" name="typeRadios" id="typeRadios" value="debit" checked="">
                         Débito
                     </label>
                 </div>
-                <div class="radio radio-primary">
+    </div>
+</div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Adicionar Créditos</h3>
+    </div>
+    <div class="panel-body">
+       <div class="radio radio-primary">
                     <label>
                         <input type="radio" name="typeRadios" id="typeRadios" value="credit">
                         Crédito
                     </label>
                 </div>
+    </div>
+</div>
+            
+                
+                
             </div>
-        </div>
+       
 			
 			<div class="form-group">
     			<label class="control-label">Valor</label>

@@ -50,3 +50,15 @@ html, body {
 .glyphicon {
 	top: 5px;
 }
+
+.search{
+	float:right;
+}
+
+.navbar-header {
+	height: 57px;
+}
+
+.ripple-wrapper{
+	height: 57px;
+}

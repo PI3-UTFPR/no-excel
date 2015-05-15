@@ -4,6 +4,8 @@
         <script src="../js/bootstrap.min.js"></script>
         <script src="../js/ripples.min.js"></script>
         <script src="../js/material.min.js"></script>
+        <script src="../js/moment-with-locales.min.js"></script>
+        <script src="../js/bootstrap-material-datepicker.js"></script>
         <script src="../js/app.js"></script>
 </body>
 </html>

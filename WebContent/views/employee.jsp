@@ -57,6 +57,11 @@
             <div class="modal-body">
                 <form class="form-signin">
           <div class="form-control-wrapper">
+          
+          <div class="form-group">
+    		<input class="form-control" id="nameInput" placeholder="Nome" type="text">
+		</div>
+          
           <div class="form-group">
     		<input class="form-control" id="userInput" placeholder="Usuário" type="text">
 		</div>
@@ -65,11 +70,6 @@
     		<input class="form-control" id="pswdInput" placeholder="Senha"  type="password">
 		</div>
 		</div>
-          <div class="togglebutton">
-            <label>
-              <input type="checkbox" value="remember-me"> Administrador
-            </label>
-          </div>
         </form>
             </div>
             <div class="modal-footer">

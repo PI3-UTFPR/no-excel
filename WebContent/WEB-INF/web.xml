@@ -2,11 +2,38 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>NoExcel</display-name>
   <welcome-file-list>
+      <welcome-file>index.jsp</welcome-file>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
+
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  	<security-constraint>
+		<display-name>Área do Administrador</display-name>
+		<web-resource-collection>
+			<web-resource-name>Protected Admin Area</web-resource-name>
+			<description/>
+			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+		<description/>
+		<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<display-name>Área dos Usuários</display-name>
+		<web-resource-collection>
+			<web-resource-name>Protected Users Area</web-resource-name>
+			<description/>
+			<url-pattern>/users/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description/>
+			<role-name>user</role-name>
+		</auth-constraint>
+	</security-constraint>
+	  
 </web-app>

@@ -8,6 +8,7 @@
 	<persistence-unit name="noexcelPU" transaction-type="RESOURCE_LOCAL">
 		
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.edu.utfpr.model.Transaction</class>		
 		<class>br.edu.utfpr.model.Person</class>		
 		<class>br.edu.utfpr.model.User</class>
 		<class>br.edu.utfpr.model.Role</class>

@@ -13,7 +13,7 @@
     <title>NoExcel</title>
 
     <!-- Bootstrap core CSS -->
-<<<<<<< HEAD
+<!-- 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     
     <link href="../css/material-fullpalette.min.css" rel="stylesheet">
@@ -25,8 +25,9 @@
     <link href="../css/material.min.css" rel="stylesheet">
     
     <link href="../css/bootstrap-material-datepicker.css" rel="stylesheet">
-    
-=======
+
+ -->
+
     <link href="<%= request.getContextPath() %>/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="<%= request.getContextPath() %>/css/material-fullpalette.min.css" rel="stylesheet">
@@ -37,7 +38,7 @@
 
     <link href="<%= request.getContextPath() %>/css/material.min.css" rel="stylesheet">
 
->>>>>>> f0e5e991d14e3144b535dbcad7e774160fc25f18
+
     <!-- Custom styles for this template -->
 
     <link href="<%= request.getContextPath() %>/css/style.css" rel="stylesheet">

@@ -1,6 +1,6 @@
-<jsp:include page="header.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
 
-<jsp:include page="nav_admin.jsp"/>
+<jsp:include page="../includes/nav_admin.jsp"/>
 <form method="get">
 <div class="container">
 	<div class="panel panel-primary">
@@ -17,4 +17,4 @@
 </div>
 </div>
 </form>
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

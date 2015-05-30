@@ -47,7 +47,7 @@
 </div>
 
 
-<div class="modal" id="modalNew">
+<div class="modal" id="modalNew" aria-labelledby="modalNew">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

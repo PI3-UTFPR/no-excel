@@ -7,17 +7,17 @@ import javax.persistence.Id;
 
 @Entity
 public class User{
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	protected long id;
 	protected String name;
 	protected String login;
 	protected String password;
-	
-	public User() {		
+
+	public User() {
 	}
-	
+
 	public User(String name, String login, String password) {
 		this.name = name;
 		this.login = login;
@@ -55,6 +55,5 @@ public class User{
 	public boolean isValid() {
 		return !getName().equals("") && !getLogin().equals("") && !getPassword().equals("");
 	}
-	
-		
+
 }

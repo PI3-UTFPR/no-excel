@@ -9,6 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import br.edu.utfpr.model.User;
+import br.edu.utfpr.model.service.RoleService;
+import br.edu.utfpr.model.service.UserService;
 
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.UserService;
@@ -19,7 +24,7 @@ import br.edu.utfpr.model.service.UserService;
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -46,7 +51,7 @@ public class UserServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		User user = new User(name, login, password);
-		
+
 		String err_msg = null;
 		if(!user.isValid()){
 			err_msg = "Todos os campos são obrigatórios.";
@@ -54,7 +59,7 @@ public class UserServlet extends HttpServlet {
 			UserService service = new UserService();
 			service.save(user);
 		}
-		
+
 		HashMap<String, String> msg = new HashMap<String, String>();
 		if(err_msg != null){
 			request.setAttribute("user", user);
@@ -64,7 +69,7 @@ public class UserServlet extends HttpServlet {
 			msg.put("success", "Usuário cadastrado com sucesso");
 		}
 		request.setAttribute("msg", msg);
-		
+
 		String address = "/views/user_form.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

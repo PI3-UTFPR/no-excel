@@ -1,7 +1,21 @@
+<%@page import="java.util.HashMap"%>
 <jsp:include page="header.jsp"/>
+<jsp:useBean id="user" scope="request" type="br.edu.utfpr.model.User" />
 
 <jsp:include page="nav_admin.jsp"/>
 <div class="container">
+<div class="row">
+	<% 
+	HashMap<String, String> msgs = (HashMap)request.getAttribute("msg");
+	if(msgs != null){
+		for(String key : msgs.keySet()){ 
+			String msg = msgs.get(key);
+		%>
+			<span class="col-md-12 alert alert-<%= key %>"><%= msg %></span>
+		<% } %>	
+	<% } %>
+</div>
+<br>
 <a href="#modalNew" class="btn btn-primary" data-toggle="modal" data-target="#modalNew">Novo</a>
 	<div class="panel panel-primary">
 	    <div class="panel-heading">
@@ -47,37 +61,37 @@
 </div>
 
 
-<div class="modal" id="modalNew" aria-labelledby="modalNew">
+<div  id="modalNew" aria-labelledby="modalNew">
+	<form class="form-signin" method="POST" action="">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h4 class="modal-title">Cadastro de funcionário</h4>
+                <h4 class="modal-title">Cadastro de usuário</h4>
             </div>
             <div class="modal-body">
-                <form class="form-signin">
           <div class="form-control-wrapper">
           
           <div class="form-group">
-    		<input class="form-control" id="nameInput" placeholder="Nome" type="text">
+    		<input class="form-control" name="name" value="${user.getName()}" id="nameInput" placeholder="Nome" type="text">
 		</div>
           
           <div class="form-group">
-    		<input class="form-control" id="userInput" placeholder="Usuário" type="text">
+    		<input class="form-control" name="login" value="${user.getLogin()}" id="userInput" placeholder="Usuário" type="text">
 		</div>
 		
 		<div class="form-group">
-    		<input class="form-control" id="pswdInput" placeholder="Senha"  type="password">
+    		<input class="form-control" id="pswdInput" name="password" value="${user.getPassword()}" placeholder="Senha"  type="password">
 		</div>
 		</div>
-        </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Salvar</button>
+                <input type="submit" class="btn btn-primary" value="Salvar" />
             </div>
         </div>
     </div>
+    </form>
 </div>
 
 <jsp:include page="footer.jsp"/>

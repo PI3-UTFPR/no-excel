@@ -36,7 +36,7 @@
       <h2 class="form-signin-heading text-center">Login no Sistema NoExcel</h2>
       <div class="card-s card-signin">
         <img class="img-circle profile-img" src="img/no-excel.png" alt="">
-        <form class="form-signin" action="login" method="post">
+        <form class="form-signin" action="UserServlet" method="POST">
           <div class="form-control-wrapper">
           <div class="form-group">
     		<input class="form-control" id="userInput" placeholder="Usuário" type="text" name="username">

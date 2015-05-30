@@ -8,6 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import br.edu.utfpr.model.User;
+import br.edu.utfpr.model.service.RoleService;
+import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Crypto;
 
 /**
  * Servlet implementation class UserServlet
@@ -37,7 +43,22 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String address = "/views/user_form.jsp";
+		
+		UserService us = new UserService();
+		User user = us.getByProperty("ra", (String) request.getAttribute("username"));
+		
+		String pass = Crypto.encrypt((String) request.getAttribute("password"));
+		
+		if(user.getPassword().equals(pass)) {
+			if (user.getRole().getType().equals("admin"))
+				address = "/views/admin.jsp";
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+		}
+		
+		response.sendRedirect(address);
 	}
 
 }

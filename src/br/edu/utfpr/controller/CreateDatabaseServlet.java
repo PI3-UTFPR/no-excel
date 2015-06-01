@@ -36,7 +36,7 @@ public class CreateDatabaseServlet extends HttpServlet {
 		Role adminRole = new Role(Role.ADMIN);
 		roleService.save(adminRole);
 		adminRole = roleService.getByProperty("type", Role.ADMIN);
-		userService.save(new User("112", "URL", adminRole));
+//		userService.save(new User("112", "URL", adminRole));
 	}
 
 }

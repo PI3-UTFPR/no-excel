@@ -1,41 +1,59 @@
 package br.edu.utfpr.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User extends Person {
-	
-	private String ra;
-	private String imageURL;
-	private long balance;
-	
-	public User() {		
+public class User{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	protected long id;
+	protected String name;
+	protected String login;
+	protected String password;
+
+	public User() {
 	}
-	
-	public User(String ra, String imageURL, Role role) {
-		this.ra = ra;
-		this.imageURL = imageURL;
-		this.role = role;
+
+	public User(String name, String login, String password) {
+		this.name = name;
+		this.login = login;
+		this.password = password;
 	}
-	
-	public String getRa() {
-		return ra;
+
+	public String getName() {
+		return name;
 	}
-	
-	public String getImageURL() {
-		return imageURL;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public long getBalance() {
-		return balance;
+
+	public String getLogin() {
+		return login;
 	}
-	
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+
+	public void setLogin(String login) {
+		this.login = login;
 	}
-	
-	public void setBalance(long balance) {
-		this.balance = balance;
-	}	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public boolean isValid() {
+		return !getName().equals("") && !getLogin().equals("") && !getPassword().equals("");
+	}
+
 }

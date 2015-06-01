@@ -20,7 +20,7 @@ public class Role {
 	@Column(nullable=false, unique=true)
 	private String type;
 	
-	public Role() {		
+	public Role() {
 	}
 	
 	public Role(String type) {

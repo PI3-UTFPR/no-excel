@@ -1,7 +1,7 @@
 <jsp:include page="header.jsp"/>
 
 <jsp:include page="nav_admin.jsp"/>
-<form method="get">
+<form method="get" action="transaction">
 <div class="container">
 	<div class="panel panel-primary">
     <div class="panel-heading">
@@ -9,8 +9,8 @@
     </div>
     <div class="panel-body">
         <div class="form-group">
-    <label class="control-label" for="raInput">RA do Aluno</label>
-    <input type="text" class="form-control" id="raInput">
+    <label class="control-label" for="ra">RA do Aluno</label>
+    <input type="text" class="form-control" id="ra">
     <button type="submit" class="btn btn-primary search">Buscar</button>
 </div>
     </div>

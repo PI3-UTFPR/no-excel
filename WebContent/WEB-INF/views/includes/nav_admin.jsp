@@ -10,7 +10,7 @@
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
             <li class="active"><a href="admin.jsp"> <span class="glyphicon mdi-action-home"></span> Início</a></li>
-            <li><a href="payment.jsp"><span class="glyphicon mdi-action-credit-card"></span> Transações</a></li>
+            <li><a href="transaction"><span class="glyphicon mdi-action-credit-card"></span> Transações</a></li>
             <li><a href="registerUser.jsp"><span class="glyphicon mdi-social-person-add"></span> Registrar</a></li>
             <li><a href="employee.jsp"><span class="glyphicon mdi-action-assignment-ind"></span> Funcionários</a></li>
             <li><a href="report_admin.jsp"><span class="glyphicon mdi-action-assignment"></span> Relatórios</a></li>

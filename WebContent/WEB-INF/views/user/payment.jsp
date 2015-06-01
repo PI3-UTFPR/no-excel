@@ -1,5 +1,5 @@
-<jsp:include page="header.jsp"/>
-<jsp:include page="nav_admin.jsp"/>
+<jsp:include page="../includes/header.jsp"/>
+<jsp:include page="../includes/nav_admin.jsp"/>
 
 <div class="container">
 
@@ -19,7 +19,7 @@
 			</div>
 			<div class="form-group">
    			 	<label class="control-label" for="disabledInput">Foto</label>
-    		 	<div><img src="../img/img.svg" name="photoImg" alt="..." class="img-rounded"></div>
+    		 	<div><img src="img/img.svg" name="photoImg" alt="..." class="img-rounded"></div>
 			</div>
 			
 			<div class="form-group">
@@ -83,4 +83,4 @@
 	
 </div>
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../includes/footer.jsp"/>

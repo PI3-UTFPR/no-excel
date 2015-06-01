@@ -11,11 +11,11 @@
         <form action="">
         	<div class="form-group">
    			 	<label class="control-label" for="disabledInput">RA</label>
-    		 	<input class="form-control" id="raIpt" type="text" placeholder="Ra" disabled>
+    		 	<input class="form-control" id="ra" type="text" placeholder="Ra" disabled>
 			</div>
 			<div class="form-group">
    			 	<label class="control-label" for="disabledInput">Nome</label>
-    		 	<input class="form-control" id="nameIpt" type="text" placeholder="Nome" disabled>
+    		 	<input class="form-control" id="name" type="text" placeholder="Nome" disabled>
 			</div>
 			<div class="form-group">
    			 	<label class="control-label" for="disabledInput">Foto</label>
@@ -26,7 +26,7 @@
     			<label class="control-label">Saldo</label>
     			<div class="input-group">
         			<span class="input-group-addon">R$</span>
-        			<input type="text" name="balaceIpt" id="balanceIpt" class="form-control" disabled>
+        			<input type="text" name="balace" id="balance" class="form-control" disabled>
     			</div>
 			</div>
 			
@@ -41,7 +41,7 @@
     <div class="panel-body">
         <div class="radio radio-primary">
                     <label>
-                        <input type="radio" name="typeRadios" id="typeRadios" value="debit" checked="">
+                        <input type="radio" name="type" id="type" value="debit" checked="">
                         Débito
                     </label>
                 </div>
@@ -54,7 +54,7 @@
     <div class="panel-body">
        <div class="radio radio-primary">
                     <label>
-                        <input type="radio" name="typeRadios" id="typeRadios" value="credit">
+                        <input type="radio" name="type" id="type" value="credit">
                         Crédito
                     </label>
                 </div>
@@ -70,7 +70,7 @@
     			<label class="control-label">Valor</label>
     			<div class="input-group">
         			<span class="input-group-addon">R$</span>
-        			<input type="text" name="valueIpt" id="valueIpt" data-thousands="." data-decimal="," class="form-control">
+        			<input type="text" name="value" id="value" data-thousands="." data-decimal="," class="form-control">
         		<span class="input-group-btn">
             		<button class="btn btn-primary" type="submit">Finalizar</button>
        		 	</span>

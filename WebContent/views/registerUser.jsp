@@ -18,17 +18,17 @@
     		 	<input class="form-control" id="name" type="text" placeholder="Nome" required>
 			</div>
 			<div class="form-group">	
-            <label for="select" class="form-control">Tipo de Pessoa</label>
+            <label for="select" class="form-group control-label">Tipo de Pessoa</label>
                 <div class="form-group">
                 <select class="form-control" id="type" required>
                     <option value="Aluno">Aluno</option>
                     <option value="Professor">Professor</option>
-                    <option value="Servidor">Servidor</option>
+                    <option value="Servidor">Técnico</option>
                 </select>	
                 </div>
    			 </div>
    			 
-   			 <div class="form-group">
+   			 <div class="form-group" name="showColleger" id="showColleger">
             <label class="form-group">Bolsista</label>
             <div class="form-group">
                 <div class="radio radio-primary">

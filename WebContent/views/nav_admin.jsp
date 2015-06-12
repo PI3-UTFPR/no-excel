@@ -1,0 +1,1 @@
+leia o header, isso também vale pra você que excluiu o footer ;)

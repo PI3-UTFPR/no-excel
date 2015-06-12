@@ -47,6 +47,7 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// ENCRYPTAR SENHA
 		String name = request.getParameter("name");
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");

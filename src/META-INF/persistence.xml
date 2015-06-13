@@ -12,6 +12,7 @@
 		<class>br.edu.utfpr.model.Transaction</class>
 		<class>br.edu.utfpr.model.User</class>
 		<class>br.edu.utfpr.model.Role</class>
+		<class>br.edu.utfpr.model.Customer</class>
 		
  		<properties>
 		  <property name="javax.persistence.jdbc.driver"

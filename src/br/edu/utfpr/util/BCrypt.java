@@ -1,4 +1,4 @@
-package Util;
+package br.edu.utfpr.util;
 
 //Copyright (c) 2006 Damien Miller <djm@mindrot.org>
 //

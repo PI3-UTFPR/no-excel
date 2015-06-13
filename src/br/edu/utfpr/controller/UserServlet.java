@@ -21,7 +21,7 @@ import br.edu.utfpr.model.service.UserService;
 /**
  * Servlet implementation class UserServlet
  */
-@WebServlet("/UserServlet")
+@WebServlet("/admin/users")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +38,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("user", new User());
-		String address = "/views/user_form.jsp";
+		String address = "/WEB-INF/views/admin/users.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}
@@ -71,7 +71,7 @@ public class UserServlet extends HttpServlet {
 		}
 		request.setAttribute("msg", msg);
 
-		String address = "/views/user_form.jsp";
+		String address = "/views/admin/users.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}

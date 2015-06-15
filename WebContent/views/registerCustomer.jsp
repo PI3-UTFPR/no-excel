@@ -8,7 +8,7 @@
         <h3 class="panel-title">Registro</h3>
     </div>
     <div class="panel-body">
-        <form action="customer" method="post">
+        <form action="cliente" method="post">
         	<div class="form-group">
    			 	<label class="control-label" for="disabledInput">RA</label>
     		 	<input class="form-control" id="ra" type="text" placeholder="Ra" required>

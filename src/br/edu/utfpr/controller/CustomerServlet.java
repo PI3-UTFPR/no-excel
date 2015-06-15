@@ -2,6 +2,7 @@ package br.edu.utfpr.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,9 @@ public class CustomerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String address = "/WEB-INF/views/customer/registerCustomer.jsp";		
+		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -40,7 +43,17 @@ public class CustomerServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		String value = request.getParameter("value");
 		
-		CustomerService customerService = new CustomerService();		
-		customerService.save(new Customer(name, ra, type, value));
+		CustomerService customerService = new CustomerService();
+		try {
+			customerService.save(new Customer(name, ra, type, value));
+			request.setAttribute("flash-message", "Salvo com sucesso");
+		} catch (Exception e) {
+			request.setAttribute("flash-message", "Erro ao salvar");
+		}finally{
+			String address = "/WEB-INF/views/customer/registerCustomer.jsp";		
+			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			dispatcher.forward(request, response);
+		}
+
 	}
 }

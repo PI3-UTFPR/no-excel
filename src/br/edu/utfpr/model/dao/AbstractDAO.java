@@ -1,6 +1,7 @@
 package br.edu.utfpr.model.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -60,9 +61,13 @@ public class AbstractDAO<PK, T> {
 	    return returnObject;
 	}
 	
-	public void save(T entity) {
-		this.entityManager = JPAUtil.getEntityManager();
-		entityManager.persist(entity);
+	public void save(T entity) throws SQLException {
+		try {
+			this.entityManager = JPAUtil.getEntityManager();
+			entityManager.persist(entity);			
+		} catch (Exception e) {
+			throw new SQLException(e);
+		}
 	}
 	
 	public void update(T entity) {

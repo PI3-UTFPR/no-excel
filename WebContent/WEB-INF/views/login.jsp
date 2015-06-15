@@ -32,7 +32,7 @@
 
   <body class=" hasGoogleVoiceExt">
 <div class="container">
-	<div>
+	<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       <h2 class="form-signin-heading text-center">Login no Sistema NoExcel</h2>
       <div class="card-s card-signin">
         <img class="img-circle profile-img" src="img/no-excel.png" alt="">

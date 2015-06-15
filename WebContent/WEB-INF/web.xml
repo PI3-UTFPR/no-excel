@@ -8,5 +8,4 @@
     <error-code>404</error-code>
     <location>/WEB-INF/views/error/notFound.jsp</location>
   </error-page>
-  
 </web-app>

@@ -1,6 +1,6 @@
 <jsp:include page="../includes/header.jsp"/>
 
-<jsp:include page="../includes/nav_user.jsp"/>
+<jsp:include page="../includes/nav_admin.jsp"/>
 
 <form method="get" action="transaction">
 <div class="container">

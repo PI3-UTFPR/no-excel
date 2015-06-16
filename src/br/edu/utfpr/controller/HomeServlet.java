@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class HomeServlet
  */
-@WebServlet("/home")
+@WebServlet("/user")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +29,7 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String address = "/WEB-INF/views/home/index.jsp";
+		String address = "/WEB-INF/views/user/index.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);

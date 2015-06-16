@@ -37,12 +37,12 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 //		Implementar verificação se está logado
-		if(false){
+		boolean loggedIn = true;
+		
+		if(loggedIn == false){
 			System.out.println("testfilter");
-			String address = "/WEB-INF/views/user/login.jsp";
-			
-			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-			dispatcher.forward(request, response);
+			request.getRequestDispatcher("/login").forward(request, response);
+
 		}else{
 			chain.doFilter(request, response);
 		}

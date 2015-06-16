@@ -20,11 +20,11 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
         <div class="panel-body">
             <form action="cliente" method="post" class="form-customer">
                 <div class="form-group ra">
-                    <label class="control-label" for="disabledInput">RA</label>
+                    <label class="control-label">RA</label>
                     <input class="form-control" name="ra" type="text" placeholder="Ra" required>
                 </div>
                 <div class="form-group name">
-                    <label class="control-label" for="disabledInput">Nome</label>
+                    <label class="control-label">Nome</label>
                     <input class="form-control" name="name" type="text" placeholder="Nome" required>
                 </div>
                 <div class="form-group type-person">	
@@ -37,19 +37,17 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
                         </select>	
                     </div>
                 </div>
-                <div class="form-group" name="showColleger" id="showColleger">
+                <div class="form-group" name="showColleger">
                     <label class="form-group">Bolsista</label>
                     <div class="form-group">
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="colleger" id="yes" value="yes" checked="">
-                                Sim	
+                                <input type="radio" name="colleger" value="yes">Sim	
                             </label>
                         </div>
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="colleger" id="no" value="no">
-                                Não
+                                <input type="radio" name="colleger" value="no" checked="">Não
                             </label>
                         </div>
                     </div>
@@ -62,7 +60,7 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
                     </div>
                 </div>
                 <div class="input-group-btn submit">
-                	<button class="btn btn-primary" type="submit">Finalizar</button>
+                	<button class="btn btn-primary" type="submit">Salvar</button>
                 </div>
             </form>
         </div>

@@ -18,16 +18,16 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
             <h3 class="panel-title">Registro</h3>
         </div>
         <div class="panel-body">
-            <form action="cliente" method="post">
-                <div class="form-group">
+            <form action="cliente" method="post" class="form-customer">
+                <div class="form-group ra">
                     <label class="control-label" for="disabledInput">RA</label>
                     <input class="form-control" name="ra" type="text" placeholder="Ra" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group name">
                     <label class="control-label" for="disabledInput">Nome</label>
                     <input class="form-control" name="name" type="text" placeholder="Nome" required>
                 </div>
-                <div class="form-group">	
+                <div class="form-group type-person">	
                     <label for="select" class="form-group control-label">Tipo de Pessoa</label>
                     <div class="form-group">
                         <select class="form-control" name="type" required>
@@ -54,15 +54,15 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group value">
                     <label class="control-label">Valor</label>
                     <div class="input-group">
                         <span class="input-group-addon">R$</span>
                         <input type="text" name="value" data-thousands="." data-decimal="," class="form-control">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit">Finalizar</button>
-                        </span>
                     </div>
+                </div>
+                <div class="input-group-btn submit">
+                	<button class="btn btn-primary" type="submit">Finalizar</button>
                 </div>
             </form>
         </div>

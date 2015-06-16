@@ -22,7 +22,7 @@
 		      value="jdbc:mysql://localhost:3306/noexcel" />
 		  
 		  <property name="javax.persistence.jdbc.user" value="root" />
-		  <property name="javax.persistence.jdbc.password" value="12345" />
+		  <property name="javax.persistence.jdbc.password" value="ft8835xt" />
 		  		  
 		  <!--property name="javax.persistence.schema-generation.database.action" value="create"-->
 		
@@ -37,4 +37,3 @@
 		</properties>
 	</persistence-unit>
 </persistence> 
-

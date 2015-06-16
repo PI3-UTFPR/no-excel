@@ -46,9 +46,11 @@ public class CustomerServlet extends HttpServlet {
 		CustomerService customerService = new CustomerService();
 		try {
 			customerService.save(new Customer(name, ra, type, value));
-			request.setAttribute("flash-message", "Salvo com sucesso");
+			request.setAttribute("flash-message", "Cliente salvo com sucesso");
+			request.setAttribute("flash-type", "success");
 		} catch (Exception e) {
-			request.setAttribute("flash-message", "Erro ao salvar");
+			request.setAttribute("flash-message", "Erro ao salvar cliente");
+			request.setAttribute("flash-type", "danger");
 		}finally{
 			String address = "/WEB-INF/views/customer/registerCustomer.jsp";		
 			RequestDispatcher dispatcher = request.getRequestDispatcher(address);

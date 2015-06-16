@@ -2,7 +2,17 @@
 <jsp:include page="/WEB-INF/views/includes/nav_admin.jsp"></jsp:include>
 
 <div class="container">
-<h1><%request.getAttribute("flash-message"); %></h1>
+
+<%
+String flashMessage = (request.getAttribute("flash-message") != null) ? request.getAttribute("flash-message").toString() : "";
+%>
+<% if(flashMessage.length() != 0){ %>
+	<div class="alert alert-dismissable alert-<%= request.getAttribute("flash-type") %>">
+	    <button type="button" class="close" data-dismiss="alert">×</button>
+	    <strong>OK!</strong> <%= request.getAttribute("flash-message") %>.
+	</div>
+<%} %>
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Registro</h3>

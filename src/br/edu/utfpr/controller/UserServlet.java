@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.RoleService;
 import br.edu.utfpr.model.service.UserService;
-
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Crypto;
 
 /**
  * Servlet implementation class UserServlet
@@ -47,18 +47,27 @@ public class UserServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ENCRYPTAR SENHA
-		String name = request.getParameter("name");
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
-		User user = new User(name, login, password);
+		String address = "/views/login.jsp";
+		
+		String login = request.getParameter("username");
+		String password = Crypto.encrypt(request.getParameter("password"));
+		
+		User user = new User();
+		user.setLogin(login);
+		user.setPassword(password);
 
 		String err_msg = null;
-		if(!user.isValid()){
-			err_msg = "Todos os campos s√£o obrigat√≥rios.";
+		
+		if(!user.isLoginValid()){
+			err_msg = "Todos os campos s„o obrigatÛrios.";
 		}else{
 			UserService service = new UserService();
-			service.save(user);
+			User aux = service.getByProperty("name", user.getName());
+			
+			if (aux.getPassword().equals(user.getPassword())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", aux);
+			}
 		}
 
 		HashMap<String, String> msg = new HashMap<String, String>();
@@ -66,12 +75,11 @@ public class UserServlet extends HttpServlet {
 			request.setAttribute("user", user);
 			msg.put("danger", err_msg);
 		}else{
-			request.setAttribute("user", new User());
-			msg.put("success", "Usu√°rio cadastrado com sucesso");
+			msg.put("success", "Usu·rio entrou no sistema!");
 		}
 		request.setAttribute("msg", msg);
 
-		String address = "/views/admin/users.jsp";
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}

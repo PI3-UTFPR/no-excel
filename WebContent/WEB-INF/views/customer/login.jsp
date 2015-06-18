@@ -35,7 +35,7 @@
 	     <h2 class="form-signin-heading text-center">Login do usuário - NoExcel</h2>
 	     <div class="card-s card-signin">
 	       <img class="img-circle profile-img" src="img/no-excel.png" alt="">
-	       <form class="form-signin" action="CustomerArea" method="POST">
+	       <form class="form-signin" action="area-do-cliente" method="POST">
 	         <div class="form-control-wrapper">
 	         <div class="form-group">
 	   		<input class="form-control" id="userInput" placeholder="RA" type="text" name="ra">

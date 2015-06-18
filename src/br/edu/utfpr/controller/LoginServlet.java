@@ -1,17 +1,20 @@
 package br.edu.utfpr.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Crypto;
 
 /**
  * Servlet implementation class LoginServlet
@@ -41,31 +44,35 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ENCRYPTAR SENHA
-		String name = request.getParameter("name");
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
-		User user = new User(name, login, password);
-
-		String err_msg = null;
-		if(!user.isValid()){
-			err_msg = "Todos os campos são obrigatórios.";
+		String login = request.getParameter("username");
+		String password = Crypto.encrypt(request.getParameter("password"));
+		String remind = request.getParameter("remind");
+		
+		UserService userService = new UserService();
+		User user = new User();
+		user = userService.getByProperty("login", login);
+		
+		if(user != null){
+			if (Crypto.checkHash(password, user.getPassword())) {
+				if(remind.equals("on")){
+					Cookie usename = new Cookie("user", login);
+					response.addCookie(usename);
+				}
+				String address = "/WEB-INF/views/admin/index.jsp";
+				RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+				dispatcher.forward(request, response);
+			}else{     
+				loginFail(request, response, login);
+			}
 		}else{
-			UserService service = new UserService();
-			service.save(user);
+			loginFail(request, response,login);
 		}
-
-		HashMap<String, String> msg = new HashMap<String, String>();
-		if(err_msg != null){
-			request.setAttribute("user", user);
-			msg.put("danger", err_msg);
-		}else{
-			request.setAttribute("user", new User());
-			msg.put("success", "Usuário cadastrado com sucesso");
-		}
-		request.setAttribute("msg", msg);
-
-		String address = "/views/admin/users.jsp";
+	}
+	
+	private void loginFail(HttpServletRequest request, HttpServletResponse response, String username)throws ServletException, IOException{
+		request.setAttribute("username", username);
+		request.setAttribute("error", true);
+		String address = "/WEB-INF/views/login.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}

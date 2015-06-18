@@ -14,8 +14,6 @@ import javax.servlet.http.HttpSession;
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.RoleService;
 import br.edu.utfpr.model.service.UserService;
-import br.edu.utfpr.model.User;
-import br.edu.utfpr.model.service.UserService;
 import br.edu.utfpr.util.Crypto;
 
 /**
@@ -23,7 +21,7 @@ import br.edu.utfpr.util.Crypto;
  */
 @WebServlet("/admin/users")
 public class UserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,56 +31,56 @@ public class UserServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("user", new User());
-		String address = "/WEB-INF/views/admin/users.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
-	}
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    setAllUsers(request);
+    request.setAttribute("user", new User());
+    String address = "/WEB-INF/views/admin/users.jsp";
+    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+    dispatcher.forward(request, response);
+  }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String address = "/views/login.jsp";
-		
-		String login = request.getParameter("username");
-		String password = Crypto.encrypt(request.getParameter("password"));
-		
-		User user = new User();
-		user.setLogin(login);
-		user.setPassword(password);
+  private void setAllUsers(HttpServletRequest request){
+    UserService us = new UserService();
+    request.setAttribute("users", us.findAll());
+  }
 
-		String err_msg = null;
-		
-		if (!user.isLoginValid()) {
-			err_msg = "Todos os campos são obrigatórios.";
-		} else {
-			UserService service = new UserService();
-			User aux = service.getByProperty("name", user.getName());
-			
-			if (aux.getPassword().equals(user.getPassword())) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", aux);
-				
-				address = "/views/user/index.jsp";
-			}
-		}
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    String name = request.getParameter("name");
+    String login = request.getParameter("login");
+    String password = Crypto.encrypt(request.getParameter("password"));
+    User user = new User(name, login, password);
 
-		HashMap<String, String> msg = new HashMap<String, String>();
-		if(err_msg != null){
-			request.setAttribute("user", user);
-			msg.put("danger", err_msg);
-		}else{
-			msg.put("success", "Usuário entrou no sistema!");
-		}
-		request.setAttribute("msg", msg);
+    String err_msg = null;
+    if(!user.isUnique()){
+      err_msg = "Login já existe.";
+    }else if(!user.isValid()){
+      err_msg = "Todos os campos são obrigatórios.";
+    }else{
+      UserService service = new UserService();
+      service.save(user);
+    }
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
-	}
+    HashMap<String, String> msg = new HashMap<String, String>();
+    if(err_msg != null){
+      request.setAttribute("user", user);
+      msg.put("danger", err_msg);
+    }else{
+      request.setAttribute("user", new User());
+      msg.put("success", "Usuário cadastrado com sucesso");
+    }
+    request.setAttribute("msg", msg);
+
+    setAllUsers(request);
+
+    String address = "/WEB-INF/views/admin/users.jsp";
+    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+    dispatcher.forward(request, response);
+  }
 
 }

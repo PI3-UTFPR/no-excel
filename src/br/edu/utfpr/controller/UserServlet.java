@@ -58,15 +58,17 @@ public class UserServlet extends HttpServlet {
 
 		String err_msg = null;
 		
-		if(!user.isLoginValid()){
+		if (!user.isLoginValid()) {
 			err_msg = "Todos os campos são obrigatórios.";
-		}else{
+		} else {
 			UserService service = new UserService();
 			User aux = service.getByProperty("name", user.getName());
 			
 			if (aux.getPassword().equals(user.getPassword())) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", aux);
+				
+				address = "/views/user/index.jsp";
 			}
 		}
 
@@ -79,7 +81,6 @@ public class UserServlet extends HttpServlet {
 		}
 		request.setAttribute("msg", msg);
 
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}

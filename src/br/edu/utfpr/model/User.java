@@ -55,5 +55,10 @@ public class User{
 	public boolean isValid() {
 		return !getName().equals("") && !getLogin().equals("") && !getPassword().equals("");
 	}
+	
+	public boolean isLoginValid() {
+		return !getLogin().equals("") && !getPassword().equals("");
+	}
+
 
 }

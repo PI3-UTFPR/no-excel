@@ -12,6 +12,7 @@ import br.edu.utfpr.model.Role;
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.RoleService;
 import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Crypto;
 
 @WebServlet("/CreateDatabaseServlet")
 public class CreateDatabaseServlet extends HttpServlet {
@@ -33,10 +34,9 @@ public class CreateDatabaseServlet extends HttpServlet {
 	private void createDatabase(){		
 		UserService userService = new UserService();
 		RoleService roleService = new RoleService();
-		Role adminRole = new Role(Role.ADMIN);
-		roleService.save(adminRole);
-		adminRole = roleService.getByProperty("type", Role.ADMIN);
-//		userService.save(new User("112", "URL", adminRole));
+		String password = new Crypto().encrypt("admin");
+		User user = new User("Admin","admin", password);
+		userService.save(user);
 	}
 
 }

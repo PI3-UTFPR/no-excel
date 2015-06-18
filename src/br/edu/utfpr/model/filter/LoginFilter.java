@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class LoginFilter
@@ -35,15 +37,12 @@ public class LoginFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpSession session = req.getSession();
 		
-//		Implementar verificação se está logado
-		boolean loggedIn = true;
-		
-		if(loggedIn == false){
-			System.out.println("testfilter");
+		if (session.getAttribute("user") == null) {
 			request.getRequestDispatcher("/login").forward(request, response);
-
-		}else{
+		} else {
 			chain.doFilter(request, response);
 		}
 	}

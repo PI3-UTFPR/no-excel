@@ -20,8 +20,8 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
         <div class="panel-body">
             <form action="cliente" method="post" class="form-customer">
                 <div class="form-group ra">
-                    <label class="control-label">RA</label>
-                    <input class="form-control" name="ra" type="text" placeholder="Ra" required>
+                    <label class="control-label">Login (Ra)</label>
+                    <input class="form-control" name="login" type="text" placeholder="Login (Ra)" required>
                 </div>
                 <div class="form-group name">
                     <label class="control-label">Nome</label>
@@ -29,7 +29,7 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
                 </div>
                 <div class="form-group name">
                     <label class="control-label">Password</label>
-                    <input class="form-control" name="password" type="text" placeholder="Senha" required>
+                    <input class="form-control" name="password" type="password" placeholder="Senha" required>
                 </div>
                 <div class="form-group type-person">	
                     <label for="select" class="form-group control-label">Tipo de Pessoa</label>
@@ -72,3 +72,4 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
 </div>
 
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
+<script type="text/javascript" src="<%= request.getContextPath() %>/js/customer.js"></script>

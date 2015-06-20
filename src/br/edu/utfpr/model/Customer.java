@@ -13,7 +13,7 @@ public class Customer{
 	private long id;
 	
 	private String name;
-	private String ra;
+	private String login;
 	private String type;
 	private String value;
 	private String password;
@@ -24,9 +24,9 @@ public class Customer{
 		
 	}
 	
-	public Customer(String name, String ra, String type, String value, String password, String colleger){
+	public Customer(String name, String login, String type, String value, String password, String colleger){
 		this.name = name;
-		this.ra = ra;
+		this.login = login;
 		this.type = type;
 		this.value = value;
 		this.password = password;
@@ -49,12 +49,12 @@ public class Customer{
 		this.name = name;
 	}
 
-	public String getRa() {
-		return ra;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setRa(String ra) {
-		this.ra = ra;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getType() {

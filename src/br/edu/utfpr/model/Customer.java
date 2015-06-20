@@ -16,17 +16,21 @@ public class Customer{
 	private String ra;
 	private String type;
 	private String value;
+	private String password;
+	private String colleger;
 	
 	
 	public Customer(){
 		
 	}
 	
-	public Customer(String name, String ra, String type, String value){
+	public Customer(String name, String ra, String type, String value, String password, String colleger){
 		this.name = name;
 		this.ra = ra;
 		this.type = type;
 		this.value = value;
+		this.password = password;
+		this.colleger = colleger;
 	}
 
 	public long getId() {
@@ -67,6 +71,22 @@ public class Customer{
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getColleger() {
+		return colleger;
+	}
+
+	public void setColleger(String colleger) {
+		this.colleger = colleger;
 	}
 
 }

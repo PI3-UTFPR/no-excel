@@ -22,11 +22,8 @@
 		      value="jdbc:mysql://localhost:3306/noexcel" />
 		  
 		  <property name="javax.persistence.jdbc.user" value="root" />
-<<<<<<< HEAD
+
 		  <property name="javax.persistence.jdbc.password" value="123" />
-=======
-		  <property name="javax.persistence.jdbc.password" value="12345" />
->>>>>>> a9714a35f1f945aefa3ee8918d1cf1a8edd96b50
 		  		  
 		  <!--property name="javax.persistence.schema-generation.database.action" value="create"-->
 		
@@ -36,7 +33,7 @@
 		  <property name="hibernate.show_sql" value="true" />
 		  <property name="hibernate.format_sql" value="true" />
 		  <!-- create - executa na criação - update - executa na consulta -->
-		  <property name="hibernate.hbm2ddl.auto" value="update" />
+		  <property name="hibernate.hbm2ddl.auto" value="create" />
 		  		
 		</properties>
 	</persistence-unit>

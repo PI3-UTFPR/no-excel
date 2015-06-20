@@ -19,7 +19,7 @@
 </div>
 <br>
 <button class="btn btn-primary" data-toggle="modal" data-target="#complete-dialog">Novo</button>
-  <div class="panel panel-primary">
+  <div class="panel panel-primary">   
       <div class="panel-heading">
           <h3 class="panel-title">Lista de Usuários</h3>
       </div>

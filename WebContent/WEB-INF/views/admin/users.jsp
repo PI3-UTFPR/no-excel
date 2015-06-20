@@ -33,7 +33,7 @@
                   <i class="mdi-file-folder"></i>
               </div>
               <div class="row-content">
-                  <div class="least-content icon-preview"><span class="mdi-image-edit"><a href="<%= request.getContextPath() %>/admin/users/delete?id=<%= u.getId() %>"></span><i class="mdi-action-delete"></i></a></div>
+                  <div class="least-content icon-preview"><a href="<%= request.getContextPath() %>/admin/users/delete?id=<%= u.getId() %>"></span><i class="mdi-action-delete"></i></a></div>
                   <h4 class="list-group-item-heading"><%= u.getName() %></h4>
                   <p class="list-group-item-text"><%= u.getLogin() %></p>
               </div>

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(filterName = "LoginFilter", urlPatterns = {"/*"})
+@WebFilter(filterName = "LoginFilter", urlPatterns = {"/kkkk"})
 public class LoginFilter implements Filter {
 
     /**

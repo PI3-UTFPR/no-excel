@@ -18,8 +18,10 @@ public class Transaction {
 	private boolean operation;
 	
 	@ManyToOne
-	private User user;
-
+	private Customer customer;
+	
+	public Transaction(){}
+	
 	public long getId() {
 		return id;
 	}

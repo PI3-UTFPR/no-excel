@@ -38,7 +38,7 @@
 	       <form class="form-signin" action="area-do-cliente" method="POST">
 	         <div class="form-control-wrapper">
 	         <div class="form-group">
-	   		<input class="form-control" id="userInput" placeholder="RA" type="text" name="ra">
+	   		<input class="form-control" id="userInput" placeholder="Usuario" type="text" name="login">
 		</div>
 		
 		<div class="form-group">

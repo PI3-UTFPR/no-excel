@@ -77,7 +77,8 @@ public class AbstractDAO<PK, T> {
 	
 	public void delete(T entity) {
 		this.entityManager = JPAUtil.getEntityManager();
-		entityManager.remove(entity);
+		T _entity = this.entityManager.merge(entity);
+		entityManager.remove(_entity);
 	}
 	
 	public List<T> findAll() {

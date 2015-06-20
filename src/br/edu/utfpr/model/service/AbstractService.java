@@ -50,10 +50,10 @@ public class AbstractService<PK, T> {
             dao.delete(entity);
             JPAUtil.commit();
         }
-        catch(Exception e){
-            JPAUtil.rollBack();
-        }
-        finally{
+    catch(Exception e){
+        JPAUtil.rollBack();
+    }
+    finally{
       JPAUtil.closeEntityManager();
     }
 

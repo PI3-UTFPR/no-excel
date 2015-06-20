@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.service.UserService;
@@ -49,22 +50,24 @@ public class LoginServlet extends HttpServlet {
 		String remind = request.getParameter("remind");
 		
 		UserService userService = new UserService();
-		User user = new User();
-		user = userService.getByProperty("login", login);
+		User user = userService.getByProperty("login", login);
 		
-		if(user != null){
+		if (user != null) {
 			if (Crypto.checkHash(password, user.getPassword())) {
-				if(remind.equals("on")){
+				if (remind.equals("on")) {
 					Cookie usename = new Cookie("user", login);
 					response.addCookie(usename);
 				}
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+				
 				String address = "/WEB-INF/views/admin/index.jsp";
 				RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 				dispatcher.forward(request, response);
-			}else{     
+			} else {     
 				loginFail(request, response, login);
 			}
-		}else{
+		} else {
 			loginFail(request, response,login);   
 		}
 	}

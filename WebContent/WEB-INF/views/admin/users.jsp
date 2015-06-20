@@ -47,7 +47,7 @@
 
 
 <div  id="modalNew" aria-labelledby="modalNew">
-  <form class="form-signin" method="POST" action="">
+  <form class="form-signin" method="POST" action="<%= request.getContextPath() %>/admin/users">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

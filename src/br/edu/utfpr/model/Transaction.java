@@ -54,6 +54,7 @@ public class Transaction {
 		this.operation = operation;
 	}
 
+
 	public Customer getCustomer() {
 		return customer;
 	}

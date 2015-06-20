@@ -18,9 +18,9 @@
   <% } %>
 </div>
 <br>
-<a href="#modalNew" class="btn btn-primary" data-toggle="modal" data-target="#modalNew">Novo</a>
-  <div class="panel panel-primary">
-      <div class="panel-heading">
+<button class="btn btn-primary" data-toggle="modal" data-target="#complete-dialog">Novo</button>
+  <div class="panel panel-primary">   
+      <div class="panel-heading">   
           <h3 class="panel-title">Lista de Usuários</h3>
       </div>
     <div class="panel-body">
@@ -33,7 +33,7 @@
                   <i class="mdi-file-folder"></i>
               </div>
               <div class="row-content">
-                  <div class="least-content icon-preview"><span class="mdi-image-edit"><a href="<%= request.getContextPath() %>/admin/users/delete?id=<%= u.getId() %>"></span><i class="mdi-action-delete"></i></a></div>
+                  <div class="least-content icon-preview"><a href="<%= request.getContextPath() %>/admin/users/delete?id=<%= u.getId() %>"></span><i class="mdi-action-delete"></i></a></div>
                   <h4 class="list-group-item-heading"><%= u.getName() %></h4>
                   <p class="list-group-item-text"><%= u.getLogin() %></p>
               </div>
@@ -46,8 +46,8 @@
 </div>
 
 
-<div  id="modalNew" aria-labelledby="modalNew">
-  <form class="form-signin" method="POST" action="">
+<div id="complete-dialog" class="modal fade" tabindex="-1">
+  <form class="form-signin" method="POST" action="<%= request.getContextPath() %>/admin/users">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

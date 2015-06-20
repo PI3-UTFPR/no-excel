@@ -58,9 +58,9 @@ public class UserServlet extends HttpServlet {
 
     String err_msg = null;
     if(!user.isUnique()){
-      err_msg = "Login j· existe.";
+      err_msg = "Login j√° existe.";
     }else if(!user.isValid()){
-      err_msg = "Todos os campos s„o obrigatÛrios.";
+      err_msg = "Todos os campos s√£o obrigat√≥rios.";
     }else{
       UserService service = new UserService();
       service.save(user);
@@ -72,7 +72,7 @@ public class UserServlet extends HttpServlet {
       msg.put("danger", err_msg);
     }else{
       request.setAttribute("user", new User());
-      msg.put("success", "Usu·rio cadastrado com sucesso");
+      msg.put("success", "Usu√°rio cadastrado com sucesso");
     }
     request.setAttribute("msg", msg);
 

@@ -42,10 +42,12 @@ public class CustomerServlet extends HttpServlet {
 		String ra = request.getParameter("ra");
 		String type = request.getParameter("type");
 		String value = request.getParameter("value");
+		String password = request.getParameter("password");
+		String colleger = request.getParameter("colleger");
 		
 		CustomerService customerService = new CustomerService();
 		try {
-			customerService.save(new Customer(name, ra, type, value));
+			customerService.save(new Customer(name, ra, type, value, password, colleger));
 			request.setAttribute("flash-message", "Cliente salvo com sucesso");
 			request.setAttribute("flash-type", "success");
 		} catch (Exception e) {

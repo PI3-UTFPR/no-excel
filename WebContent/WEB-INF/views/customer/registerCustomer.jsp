@@ -27,6 +27,10 @@ String flashMessage = (request.getAttribute("flash-message") != null) ? request.
                     <label class="control-label">Nome</label>
                     <input class="form-control" name="name" type="text" placeholder="Nome" required>
                 </div>
+                <div class="form-group name">
+                    <label class="control-label">Password</label>
+                    <input class="form-control" name="password" type="text" placeholder="Senha" required>
+                </div>
                 <div class="form-group type-person">	
                     <label for="select" class="form-group control-label">Tipo de Pessoa</label>
                     <div class="form-group">

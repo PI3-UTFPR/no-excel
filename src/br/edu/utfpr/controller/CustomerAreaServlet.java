@@ -46,30 +46,37 @@ public class CustomerAreaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String address = "/WEB-INF/views/customer/index.jsp";
-		
+				
 		String login_form = request.getParameter("login");
 		String senha_form = request.getParameter("password");
 		CustomerService us = new CustomerService();
 		
 		Customer u = us.getByProperty("login", login_form);
-		if(u != null & u.getPassword().equals(senha_form)){
-			//3. Cookies
-			Cookie cookie = new Cookie("user_email", login_form );
-			cookie.setMaxAge(1000*24*3600);//1 Day
-			response.addCookie(cookie);
-			//2. Escopo (requisição ou sessão ou aplicação)
-			HttpSession session = request.getSession();
-			session.setAttribute("is_loged", true);
-			request.getRequestDispatcher("SissPass_control_session").forward(request, response);
+		if(u != null ){
+			if(u.getPassword().equals(senha_form)){
+			
+				HttpSession session = request.getSession();
+				session.setAttribute("is_loged", true);
+				
+				String address = "/WEB-INF/views/customer/index.jsp";
+				RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+				dispatcher.forward(request, response);
+			
+			}else{
+				loginFail(request, response,login_form);
+			}
 		}else{
-			response.sendRedirect(getServletContext().getContextPath()+"/views/login.jsp");
+			loginFail(request, response,login_form);   
 		}
 		
-		
+	}
+	
+	private void loginFail(HttpServletRequest request, HttpServletResponse response, String username)throws ServletException, IOException{
+		request.setAttribute("username", username);
+		request.setAttribute("error", true);
+		String address = "/WEB-INF/views/login.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
-		// TODO Auto-generated method stub
 	}
 
 }

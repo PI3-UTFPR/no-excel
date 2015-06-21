@@ -13,44 +13,40 @@
 
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Registrar novo cliente</h3>
+            <h3 class="panel-title">Editar cliente</h3>
         </div>
         <div class="panel-body">
-            <form action="<%= request.getContextPath() %>/admin/customers/save" method="post" class="form-customer">
+            <form action="<%= request.getContextPath() %>/admin/customers/edit" method="post" class="form-customer">
                 <div class="form-group ra">
-                    <!-- <label class="control-label">Login (Ra)</label> -->
-                    <input class="form-control" name="login" type="text" placeholder="Login (Ra)" required>
+                    <input class="form-control" name="login" type="text" disabled="" value="${login}">
                 </div>
                 <div class="form-group name">
-                    <!-- <label class="control-label">Nome</label> -->
-                    <input class="form-control" name="name" type="text" placeholder="Nome" required>
+                    <input class="form-control" name="name" type="text" value="${name}">
                 </div>
                 <div class="form-group name">
-                    <!-- <label class="control-label">Password</label> -->
-                    <input class="form-control" name="password" type="password" placeholder="Senha" required>
+                    <input class="form-control" name="password" type="password" value="${password}">
                 </div>
                 <div class="form-group type-person">	
-                    <!-- <label for="select" class="form-group control-label">Tipo de Pessoa</label> -->
                     <div class="form-group">
                         <select class="form-control" name="type" required>
                             <option value="">Tipo de Cliente</option>
-                            <option value="Aluno">Aluno</option>
-                            <option value="Professor">Professor</option>
-                            <option value="Servidor">Técnico</option>
+                            <option value="Aluno" <%= (request.getAttribute("type").equals("Aluno")) ? "selected" : "" %> >Aluno</option>
+                            <option value="Professor" <%= (request.getAttribute("type").equals("Professor")) ? "selected" : "" %>  >Professor</option>
+                            <option value="Servidor" <%= (request.getAttribute("type").equals("Servidor")) ? "selected" : "" %>  >Técnico</option>                         
                         </select>	
                     </div>
                 </div>
-                <div class="form-group" name="showColleger">
+                <div class="form-group" name="showColleger" style="<%= !(request.getAttribute("type").equals("Aluno")) ? "display:none" : "" %>" >
                     <label class="form-group">Bolsista</label>
                     <div class="form-group">
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="colleger" value="yes">Sim	
+                                <input type="radio" name="colleger" value="yes" <%= (request.getAttribute("colleger").equals("yes")) ? "checked" : "" %> >Sim	
                             </label>
                         </div>
                         <div class="radio radio-primary">
                             <label>
-                                <input type="radio" name="colleger" value="no" checked="">Não
+                                <input type="radio" name="colleger" value="no" <%= (request.getAttribute("colleger").equals("no")) ? "checked" : "" %> >Não
                             </label>
                         </div>
                     </div>
@@ -59,7 +55,7 @@
                     <label class="control-label">Valor</label>
                     <div class="input-group">
                         <span class="input-group-addon">R$</span>
-                        <input type="text" name="value" data-thousands="." data-decimal="," class="form-control">
+                        <input type="text" name="value" value="${value}" data-thousands="." data-decimal="," class="form-control">
                     </div>
                 </div>
                 <div class="input-group-btn submit">
@@ -67,6 +63,7 @@
                 	<a href="<%= request.getContextPath() %>/admin/customers">><button class="btn btn-warning pull-left" type="button">Voltar</button></a>
                 </div>
             </form>
+ 
         </div>
     </div>
 </div>

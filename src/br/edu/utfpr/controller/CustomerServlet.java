@@ -9,12 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.edu.utfpr.model.Customer;
-import br.edu.utfpr.model.service.CustomerService;
 /**
  * Servlet implementation class CustomerServlet
  */
-@WebServlet("/cliente")
+@WebServlet("/admin/customers")
 public class CustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -23,41 +21,23 @@ public class CustomerServlet extends HttpServlet {
      */
     public CustomerServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String address = "/WEB-INF/views/customer/registerCustomer.jsp";		
+		String address = "/WEB-INF/views/customer/manageCustomer.jsp";		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */	
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("name");
-		String login = request.getParameter("login");
-		String type = request.getParameter("type");
-		String value = request.getParameter("value");
-		String password = request.getParameter("password");
-		String colleger = request.getParameter("colleger");
-		
-		CustomerService customerService = new CustomerService();
-		try {
-			customerService.save(new Customer(name, login, type, value, password, colleger));
-			request.setAttribute("flash-message", "Cliente salvo com sucesso");
-			request.setAttribute("flash-type", "success");
-		} catch (Exception e) {
-			request.setAttribute("flash-message", "Erro ao salvar cliente");
-			request.setAttribute("flash-type", "danger");
-		}finally{
-			String address = "/WEB-INF/views/customer/registerCustomer.jsp";		
-			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-			dispatcher.forward(request, response);
-		}
-
+		// TODO Auto-generated method stub
 	}
+
 }

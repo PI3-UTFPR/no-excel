@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.edu.utfpr.model.service.CustomerService;
+import br.edu.utfpr.model.service.UserService;
+
 @Entity
 public class Customer{
 
@@ -87,6 +90,14 @@ public class Customer{
 
 	public void setColleger(String colleger) {
 		this.colleger = colleger;
+	}
+	
+	public boolean isUnique() {
+		CustomerService customer = new CustomerService();
+		if (customer.getByProperty("login", getLogin()) != null) {
+			return false;
+		}
+		return true;
 	}
 
 }

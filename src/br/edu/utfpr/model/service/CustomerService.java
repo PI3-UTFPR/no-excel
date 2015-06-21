@@ -8,5 +8,4 @@ public class CustomerService extends AbstractService<Long, Customer>{
 	public CustomerService(){
 		dao = new CustomerDAO();
 	}
-
 }

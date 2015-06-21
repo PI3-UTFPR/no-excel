@@ -11,7 +11,13 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="admin.jsp"> <span class="glyphicon mdi-action-home"></span> Início</a></li>
             <li><a href="transaction"><span class="glyphicon mdi-action-credit-card"></span> Transações</a></li>
-            <li><a href="<%= request.getContextPath() %>/admin/users"><span class="glyphicon mdi-social-person-add"></span> Registrar</a></li>
+            <li class="dropdown">
+                <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon mdi-social-person-add"></span>Registrar <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="<%= request.getContextPath() %>/admin/customers">Novo Cliente</a></li>
+                    <li><a href="<%= request.getContextPath() %>/admin/users">Novo Administrador</a></li>
+                </ul>
+            </li>
             <li><a href="employee.jsp"><span class="glyphicon mdi-action-assignment-ind"></span> Funcionários</a></li>
             <li><a href="report_admin.jsp"><span class="glyphicon mdi-action-assignment"></span> Relatórios</a></li>
         </ul>

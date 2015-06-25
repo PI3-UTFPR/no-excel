@@ -59,6 +59,21 @@ public class AbstractService<PK, T> {
 
     return entity;
   }
+  public T update(T entity){
+	    try{
+	            JPAUtil.beginTransaction();
+	            dao.update(entity);
+	            JPAUtil.commit();
+	        }
+	    catch(Exception e){
+	        JPAUtil.rollBack();
+	    }
+	    finally{
+	      JPAUtil.closeEntityManager();
+	    }
+
+	    return entity;
+	  }
 
   public T getByProperty(String propertyName, String propertyValue){
     T entity = null;

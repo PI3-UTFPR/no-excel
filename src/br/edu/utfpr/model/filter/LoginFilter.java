@@ -11,13 +11,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
  * Servlet Filter implementation class LoginFilter
  */
-
-@WebFilter(filterName = "LoginFilter", urlPatterns = {"/kkkk"})
+@WebFilter(filterName = "LoginFilter", urlPatterns = {"/disabled"} )
 public class LoginFilter implements Filter {
 
     /**
@@ -38,12 +38,50 @@ public class LoginFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession();
 		
-		if (session.getAttribute("user") == null) {
-			request.getRequestDispatcher("/login").forward(request, response);
-		} else {
+//		Implementar verificação se está logado
+		boolean loggedIn = true;
+		String role = null;
+		HttpSession session = ((HttpServletRequest) request).getSession();
+		if(session.getAttribute("customerLogin") != null){
+			role = "customer";
+		// Manager
+		}else if(session.getAttribute("user") != null){
+			role = "user";
+		// Admin
+		}else if(session.getAttribute("username") != null){
+			role = "admin";
+		}
+		
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		String contextPath = ((HttpServletRequest)request).getContextPath();
+		
+		
+		if(role == null){
+			System.out.println("teste01");
+			httpResponse.sendRedirect(contextPath + "/login");
+		}else{
+			String url = ((HttpServletRequest)request).getRequestURI();
+			if(role.equals("customer")){
+				String checkUrl = contextPath + "/area-do-cliente";
+				if(!url.startsWith(checkUrl)){
+					System.out.println("teste02");
+					httpResponse.sendRedirect(contextPath + "/area-do-cliente");
+					return;
+				}
+			}else if(role.equals("user")){
+				String checkUrl = contextPath + "/user";
+				if(!url.startsWith(checkUrl)){
+					httpResponse.sendRedirect(((HttpServletRequest)request).getContextPath() + "/user");
+					return;
+				}
+			}else if(role.equals("admin")){
+				if(!url.startsWith(contextPath + "/user") || !url.startsWith(contextPath + "/admin")){
+					httpResponse.sendRedirect(((HttpServletRequest)request).getContextPath() + "/admin");
+					return;
+				}
+			}
+			
 			chain.doFilter(request, response);
 		}
 	}

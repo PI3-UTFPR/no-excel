@@ -42,6 +42,13 @@ public class CustomerAreaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String address = "/WEB-INF/views/customer/login.jsp";
 		HttpSession session = request.getSession();
+		
+		if (request.getParameter("logout") != null) {  
+		    session.invalidate();
+		    response.sendRedirect("area-do-cliente");
+		    return; // <--- Here.
+		}		
+		
 		try{
 			Boolean b = (Boolean) session.getAttribute("is_loged");
 			if(b){

@@ -77,7 +77,10 @@ public class AbstractService<PK, T> {
 
     return entity;
   }
-
+  
+  public List<T> findAllById (String stringName, PK pk){
+	  return dao.findAllById(stringName, pk);
+  }
   public List<T> findAll(){
         return dao.findAll();
     }

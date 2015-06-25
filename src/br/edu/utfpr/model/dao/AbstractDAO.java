@@ -61,6 +61,12 @@ public class AbstractDAO<PK, T> {
 	    return returnObject;
 	}
 	
+	public List<T> findAllById (String name, PK pk){
+		this.entityManager = JPAUtil.getEntityManager();
+		return entityManager.createQuery("From " + getTypeClass().getName() + " WHERE " + name + "_id = "+ pk + "order by id desc").setFirstResult( 0 )  
+				 .setMaxResults( 30 ).getResultList();
+	}
+	
 	public void save(T entity) throws SQLException {
 		try {
 			this.entityManager = JPAUtil.getEntityManager();

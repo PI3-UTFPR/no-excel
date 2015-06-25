@@ -12,7 +12,7 @@
             <li class="active"><a href="index.jsp"> <span class="glyphicon mdi-action-home"></span> Início</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="javascript:void(0)"><span class="glyphicon mdi-action-exit-to-app"></span> Sair</a></li>
+            <li><a href="?logout=true"><span class="glyphicon mdi-action-exit-to-app"></span> Sair</a></li>
         </ul>
     </div>
 </div>

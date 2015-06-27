@@ -19,10 +19,10 @@
 		      value="com.mysql.jdbc.Driver" />
 		  
 		  <property name="javax.persistence.jdbc.url" 
-		      value="jdbc:mysql://localhost:3308/noexcel" />
+		      value="jdbc:mysql://localhost:3306/noexcel" />
 		  
-		  <property name="javax.persistence.jdbc.user" value="tomcat" />
-		  <property name="javax.persistence.jdbc.password" value="teclado123" />
+		  <property name="javax.persistence.jdbc.user" value="root" />
+		  <property name="javax.persistence.jdbc.password" value="123" />
 		  		  
 		  <!--property name="javax.persistence.schema-generation.database.action" value="create"-->
 		
@@ -33,7 +33,7 @@
 		  <property name="hibernate.format_sql" value="true" />
 		  <!-- create - executa na criação - update - executa na consulta -->
 		  <!-- property name="hibernate.hbm2ddl.auto" value="create" -->
-		  <property name="hibernate.hbm2ddl.auto" value="update" />
+		  <property name="hibernate.hbm2ddl.auto" value="create" />
 		  		
 		</properties>
 	</persistence-unit>

@@ -18,13 +18,13 @@
         <div class="panel-body">
             <form action="<%= request.getContextPath() %>/manager/edit-customer" method="post" class="form-customer">
                 <div class="form-group ra">
-                    <input class="form-control" name="login" type="text" disabled="" value="${login}">
+                    <input class="form-control" name="login" type="text" value="${login}">
                 </div>
                 <div class="form-group name">
                     <input class="form-control" name="name" type="text" value="${name}">
                 </div>
                 <div class="form-group name">
-                    <input class="form-control" name="password" type="password" value="${password}">
+                    <input class="form-control" name="password" type="password" placeholder="Insira uma nova senha">
                 </div>
                 <div class="form-group type-person">	
                     <div class="form-group">
@@ -54,7 +54,7 @@
                 <div class="form-group value">
                     <label class="control-label">Valor</label>
                     <div class="input-group">
-                        <span class="input-group-addon">R$</span>
+                        <!-- <span class="input-group-addon">R$</span> -->
                         <input type="text" name="value" value="${value}" data-thousands="." data-decimal="," class="form-control">
                     </div>
                 </div>

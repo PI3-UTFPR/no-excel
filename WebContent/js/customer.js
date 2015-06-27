@@ -1,6 +1,6 @@
 window.onload = function(){
 	jQuery(function($){
-		$('input[name=login],input[name=find]').on('input', function (event) { 
+		$('input[name=login]').on('input', function (event) { 
 		    this.value = this.value.replace(/[^0-9]/g, '');
 		});
 

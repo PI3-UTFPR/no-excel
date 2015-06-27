@@ -1,8 +1,11 @@
 package br.edu.utfpr.controller.manager;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
+import javassist.expr.NewArray;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,10 +14,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.mapping.Array;
+
+import antlr.StringUtils;
 import br.edu.utfpr.model.Customer;
 import br.edu.utfpr.model.service.CustomerService;
 import br.edu.utfpr.util.Crypto;
+import br.edu.utfpr.util.MoneyUtil;
 import br.edu.utfpr.util.Role;
+import br.edu.utfpr.util.StringUtil;
 
 /**
  * 
@@ -34,21 +42,28 @@ public class EditCustomerServlet extends HttpServlet {
 		String address = "";
 	
 		try {
+			br.edu.utfpr.model.Customer result = null;
 			
-			br.edu.utfpr.model.Customer result  = customer.getByProperty("login", find.trim());
+			if(this.isNumeric(find))			
+				result  = customer.getByProperty("login", find.trim());
+			else
+				result  = customer.getByProperty("name", StringUtil.formalizeName(find.trim()));			
+			
 			request.setAttribute("login", result.getLogin());
 			request.setAttribute("name", result.getName());
-			request.setAttribute("password", result.getPassword());
 			request.setAttribute("type", result.getType());
-			request.setAttribute("value", result.getValue());
+			request.setAttribute("value", MoneyUtil.formatMoney(result.getValue()));
 			request.setAttribute("colleger", result.getColleger());
+			
 			address = "/WEB-INF/views/manager/edit-customer.jsp";
 			
 		} catch (Exception e) {
 			HashMap<String, String> message = new HashMap<String, String>();
+			
 			message.put("Aviso", "Cliente não existe.");
 			request.setAttribute("flashMessage", message);
 			request.setAttribute("flashType", "warning");
+			
 			address = "/WEB-INF/views/manager/control-customer.jsp";
 		}finally{
 			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
@@ -61,13 +76,13 @@ public class EditCustomerServlet extends HttpServlet {
 		HashMap<String, String> mapParams = new HashMap<String, String>();
 		HashMap<String, String> result;
 		
-		mapParams.put("name", request.getParameter("name"));
+		mapParams.put("name", StringUtil.formalizeName(request.getParameter("name").trim()));
 		mapParams.put("login", request.getParameter("login"));
 		mapParams.put("type", request.getParameter("type"));
 		mapParams.put("value", request.getParameter("value"));
 		mapParams.put("password", Crypto.encrypt(request.getParameter("password")));
 		mapParams.put("colleger", request.getParameter("colleger"));
-		
+
 		result = verifyParameters(mapParams);
 		
 		try {
@@ -76,11 +91,12 @@ public class EditCustomerServlet extends HttpServlet {
 				request.setAttribute("flashType", "warning");
 			}else{
 				CustomerService customerService = new CustomerService();
+				Long value = MoneyUtil.toLong(mapParams.get("value"));
 				customerService.update(new Customer(
 						mapParams.get("name"),
 						mapParams.get("login"),
 						mapParams.get("type"),
-						mapParams.get("value"),
+						value,
 						mapParams.get("password"),
 						mapParams.get("colleger")						
 					)
@@ -96,7 +112,8 @@ public class EditCustomerServlet extends HttpServlet {
 			request.setAttribute("flashType", "danger");
 		}
 		finally{
-			String address = "/WEB-INF/views/manager/control-customer.jsp";		
+			String address = "/WEB-INF/views/manager/control-customer.jsp";	
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 			dispatcher.forward(request, response);
 		}		
@@ -118,7 +135,7 @@ public class EditCustomerServlet extends HttpServlet {
 					String[] splitname = entry.getValue().split(" ");
 					if(splitname.length < 2)
 						result.put("Nome", "É necessário nome e sobrenome.");
-				break;
+					break;
 				case "login":
 					if(entry.getValue().length() == 0)
 						result.put("Login", "Valor está em branco.");
@@ -145,5 +162,7 @@ public class EditCustomerServlet extends HttpServlet {
 		return result;
 	}
 	
-
+	private boolean isNumeric(String s) {  
+	    return s.matches("[-+]?\\d*\\.?\\d+");  
+	}  
 }

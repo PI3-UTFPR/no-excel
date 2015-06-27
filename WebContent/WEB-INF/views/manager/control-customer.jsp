@@ -24,7 +24,7 @@
             <form action="<%= request.getContextPath() %>/manager/edit-customer" method="get">
                 <div class="form-group ra">
                     <!-- <label class="control-label">Login (Ra)</label> -->
-                    <input class="form-control" name="find" type="text" placeholder="Buscar cliente por login" required>
+                    <input class="form-control" name="find" type="text" placeholder="Buscar cliente por login ou nome" required>
                 </div>
                 
                 <div class="input-group-btn submit">

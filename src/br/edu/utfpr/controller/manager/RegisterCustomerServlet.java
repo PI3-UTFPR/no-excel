@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import br.edu.utfpr.model.Customer;
 import br.edu.utfpr.model.service.CustomerService;
 import br.edu.utfpr.util.Crypto;
-import br.edu.utfpr.util.Role;
+import br.edu.utfpr.util.MoneyUtil;
+import br.edu.utfpr.util.StringUtil;
 
 
 /**
@@ -39,7 +40,7 @@ public class RegisterCustomerServlet extends HttpServlet {
 		HashMap<String, String> mapParams = new HashMap<String, String>();
 		HashMap<String, String> result;
 		
-		mapParams.put("name", request.getParameter("name"));
+		mapParams.put("name", StringUtil.formalizeName(request.getParameter("name").trim()));
 		mapParams.put("login", request.getParameter("login").trim());
 		mapParams.put("type", request.getParameter("type"));
 		mapParams.put("value", request.getParameter("value"));
@@ -54,11 +55,13 @@ public class RegisterCustomerServlet extends HttpServlet {
 				request.setAttribute("flashMessage", result);
 				request.setAttribute("flashType", "warning");
 			}else{
+				Long value = MoneyUtil.toLong(mapParams.get("value"));
+				
 				Customer customer = new Customer(
 						mapParams.get("name"),
 						mapParams.get("login"),
 						mapParams.get("type"),
-						mapParams.get("value"),
+						value,
 						mapParams.get("password"),
 						mapParams.get("colleger")						
 					);

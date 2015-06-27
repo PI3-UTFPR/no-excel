@@ -14,7 +14,7 @@ public class Customer extends Person {
 		
 	private String login;
 	private String type;
-	private String value;
+	private Long value;
 	private String password;
 	private String colleger;	
 	
@@ -22,7 +22,7 @@ public class Customer extends Person {
 		
 	}
 	
-	public Customer(String name, String login, String type, String value, String password, String colleger){
+	public Customer(String name, String login, String type, Long value, String password, String colleger){
 		this.name = name;
 		this.login = login;
 		this.type = type;
@@ -64,11 +64,11 @@ public class Customer extends Person {
 		this.type = type;
 	}
 
-	public String getValue() {
+	public Long getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(Long value) {
 		this.value = value;
 	}
 

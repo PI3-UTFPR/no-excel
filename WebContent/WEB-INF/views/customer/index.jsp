@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,13 +12,13 @@
 <link href="css/material.min.css" rel="stylesheet">   
    <!-- Custom styles for this template -->
 <link href="css/style.css" rel="stylesheet">
-<title>Consultar Extrato - ${customer.getName()}</title>
+<title>Consultar Extrato - ${person.getName()}</title>
 </head>
 <body>
 <jsp:include page="../includes/nav_customer.jsp"/>
 <div class="container">
-	<h3 class='text-center'>As ultimas 30 transações de ${customer.getName()}</h3>
-	<h2><span class="label label-success">Saldo Atual: R$: ${customer.getValue()}</span></h2>
+	<h3 class='text-center'>As últimas 30 transações de ${person.getName()}</h3>
+	<h2><span class="label label-success">Saldo Atual: R$: ${person.getValue()}</span></h2>
 	<table class="table table-striped table-hover ">
 	    <thead>
 	        <tr>

@@ -1,77 +1,47 @@
 package br.edu.utfpr.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import br.edu.utfpr.model.service.UserService;
-
 @Entity
-public class User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	protected long id;
-	protected String name;
-	protected String login;
-	protected String password;
-
-	public User() {
+public class User extends Person {
+		
+	private String username;
+	private String password;	
+	private long balance;
+	
+	public User() {		
 	}
-
-	public User(String name, String login, String password) {
+	
+	public User(String name, String username, String password, String role) {
 		this.name = name;
-		this.login = login;
+		this.username = username;
 		this.password = password;
+		this.role = role;
 	}
-
-	public String getName() {
-		return name;
+	
+	public String getUsername() {
+		return username;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
+	
 	public String getPassword() {
 		return password;
 	}
-
+		
+	public long getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(long balance) {
+		this.balance = balance;
+	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public boolean isUnique() {
-		UserService us = new UserService();
-		if (us.getByProperty("login", getLogin()) != null) {
-			return false;
-		}
-		return true;
-	}
-
+	
 	public boolean isValid() {
-		return !getName().equals("") && !getLogin().equals("")
+		return !getName().equals("") && !getUsername().equals("")
 				&& !getPassword().equals("");
 	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", login=" + login
-				+ ", password=" + password + "]";
-	}
-
 }

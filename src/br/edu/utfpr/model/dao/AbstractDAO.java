@@ -1,7 +1,6 @@
 package br.edu.utfpr.model.dao;
 
 import java.lang.reflect.ParameterizedType;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +11,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Root;
 
+import br.edu.utfpr.model.Transaction;
 import br.edu.utfpr.util.JPAUtil;
 
 @SuppressWarnings("unchecked")
@@ -61,19 +61,9 @@ public class AbstractDAO<PK, T> {
 	    return returnObject;
 	}
 	
-	public List<T> findAllById (String name, PK pk){
+	public void save(T entity) {
 		this.entityManager = JPAUtil.getEntityManager();
-		return entityManager.createQuery("From " + getTypeClass().getName() + " WHERE " + name + "_id = "+ pk + "order by id desc").setFirstResult( 0 )  
-				 .setMaxResults( 30 ).getResultList();
-	}
-	
-	public void save(T entity) throws SQLException {
-		try {
-			this.entityManager = JPAUtil.getEntityManager();
-			entityManager.persist(entity);			
-		} catch (Exception e) {
-			throw new SQLException(e);
-		}
+		entityManager.persist(entity);
 	}
 	
 	public void update(T entity) {
@@ -81,10 +71,10 @@ public class AbstractDAO<PK, T> {
 		entityManager.merge(entity);
 	}
 	
-	public void delete(T entity) {
+	public void delete(T entity) {		
 		this.entityManager = JPAUtil.getEntityManager();
-		T _entity = this.entityManager.merge(entity);
-		entityManager.remove(_entity);
+		entity = entityManager.merge(entity);
+		entityManager.remove(entity);		
 	}
 	
 	public List<T> findAll() {
@@ -93,7 +83,13 @@ public class AbstractDAO<PK, T> {
 				.getResultList();
 	}
 	
-	private Class<?> getTypeClass() {
+	public List<Transaction> findAllById (String id, Long pk){
+		this.entityManager = JPAUtil.getEntityManager();
+		return entityManager.createQuery("FROM " + getTypeClass().getName() + " WHERE " + id + " = "+ pk + "order by id desc").setFirstResult(0)  
+				 .setMaxResults(30).getResultList();
+	}
+	
+	protected Class<?> getTypeClass() {
 		Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().
 				getGenericSuperclass()).getActualTypeArguments()[1];
 		return clazz;

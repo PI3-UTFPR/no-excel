@@ -8,10 +8,10 @@
 	<persistence-unit name="noexcelPU" transaction-type="RESOURCE_LOCAL">
 		
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>br.edu.utfpr.model.Person</class>
-		<class>br.edu.utfpr.model.Transaction</class>
-		<class>br.edu.utfpr.model.User</class>
-		<class>br.edu.utfpr.model.Role</class>
+		
+		<class>br.edu.utfpr.model.Person</class>		
+		<class>br.edu.utfpr.model.User</class>		
+		<class>br.edu.utfpr.model.Transaction</class>		
 		<class>br.edu.utfpr.model.Customer</class>
 		
  		<properties>
@@ -19,11 +19,10 @@
 		      value="com.mysql.jdbc.Driver" />
 		  
 		  <property name="javax.persistence.jdbc.url" 
-		      value="jdbc:mysql://localhost:3306/noexcel" />
+		      value="jdbc:mysql://localhost:3308/noexcel" />
 		  
-		  <property name="javax.persistence.jdbc.user" value="root" />
-
-		  <property name="javax.persistence.jdbc.password" value="12345" />
+		  <property name="javax.persistence.jdbc.user" value="tomcat" />
+		  <property name="javax.persistence.jdbc.password" value="teclado123" />
 		  		  
 		  <!--property name="javax.persistence.schema-generation.database.action" value="create"-->
 		
@@ -33,8 +32,10 @@
 		  <property name="hibernate.show_sql" value="true" />
 		  <property name="hibernate.format_sql" value="true" />
 		  <!-- create - executa na criação - update - executa na consulta -->
+		  <!-- property name="hibernate.hbm2ddl.auto" value="create" -->
 		  <property name="hibernate.hbm2ddl.auto" value="update" />
 		  		
 		</properties>
 	</persistence-unit>
 </persistence> 
+

@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.edu.utfpr.model.Role;
 import br.edu.utfpr.model.User;
-import br.edu.utfpr.model.service.RoleService;
 import br.edu.utfpr.model.service.UserService;
 import br.edu.utfpr.util.Crypto;
+import br.edu.utfpr.util.Role;
 
 @WebServlet("/CreateDatabaseServlet")
 public class CreateDatabaseServlet extends HttpServlet {
@@ -31,12 +30,19 @@ public class CreateDatabaseServlet extends HttpServlet {
 		createDatabase();
 	}
 	
-	private void createDatabase(){		
+	/**
+	 * 
+	 * Cria o usuário admin
+	 * 
+	 */
+	protected void createDatabase(){
+		String name = "João Rogério";
+		String login = "admin";
+		String password = "admin";
 		UserService userService = new UserService();
-		RoleService roleService = new RoleService();
-		String password = new Crypto().encrypt("admin");
-		User user = new User("Admin","admin", password);
-		userService.save(user);
+		password = Crypto.encrypt(password);
+		User admin = new User(name, login, password, Role.ADMIN);
+		userService.save(admin);
+		System.out.println("Inserido com sucesso");
 	}
-
 }

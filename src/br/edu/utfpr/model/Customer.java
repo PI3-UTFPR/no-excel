@@ -7,21 +7,16 @@ import javax.persistence.Id;
 
 import br.edu.utfpr.model.service.CustomerService;
 import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Role;
 
 @Entity
-public class Customer{
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	private String name;
+public class Customer extends Person {
+		
 	private String login;
 	private String type;
 	private String value;
 	private String password;
-	private String colleger;
-	
+	private String colleger;	
 	
 	public Customer(){
 		
@@ -34,6 +29,7 @@ public class Customer{
 		this.value = value;
 		this.password = password;
 		this.colleger = colleger;
+		this.role = Role.CLIENT;
 	}
 
 	public long getId() {

@@ -12,59 +12,66 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.utfpr.model.Customer;
 import br.edu.utfpr.model.User;
+import br.edu.utfpr.model.service.CustomerService;
 import br.edu.utfpr.model.service.UserService;
+import br.edu.utfpr.util.Constants;
 import br.edu.utfpr.util.Crypto;
+import br.edu.utfpr.util.Role;
 
 /**
- * Servlet implementation class LoginServlet
+ * 
+ * Trata da funcionalidade de login do cliente
+ * 
+ * @author ronifabio
+ *
  */
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String address = "/WEB-INF/views/login.jsp";
+		String address = "/views/login.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Tratando o login do cliente");
+		
 		String login = request.getParameter("username");
 		String password = request.getParameter("password");
-		String remind = request.getParameter("remind");
-		
-		UserService userService = new UserService();
-		User user = new User();
-		user = userService.getByProperty("login", login);
 				
-		if(user != null){
-			if (Crypto.checkHash(password, user.getPassword())) {
+		CustomerService customerService = new CustomerService();
+		Customer customer = customerService.getByProperty("login", login);
 				
-				Cookie usename = new Cookie("user", login);
-				response.addCookie(usename);
-			
-				String address = "/WEB-INF/views/admin/index.jsp";
-				RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-				dispatcher.forward(request, response);
-			}else{     
+		if(customer != null){
+			if (Crypto.checkHash(password, customer.getPassword())) {
+								
+				//tempo da sessão é de 2 horas
+				request.getSession().setMaxInactiveInterval(2 * 60 * 60);
+				request.getSession().setAttribute(Constants.PERSON_KEY, customer);
+				
+				/*
+				 * 
+				 * Encaminha para a página inicial do respectivo usuário
+				 * 
+				 */				
+				//String address = "/WEB-INF/views" + Constants.CLIENT_PATH + "/index.jsp";
+				String address = Constants.CLIENT_PATH;				
+				String contextPath = request.getContextPath();
+				response.sendRedirect(contextPath + address);
+				
+				//RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+				//dispatcher.forward(request, response);
+			}
+			else{				
 				loginFail(request, response, login);
 			}
-		}else{
+		}
+		else{			
 			loginFail(request, response,login);   
 		}
 	}
@@ -72,9 +79,8 @@ public class LoginServlet extends HttpServlet {
 	private void loginFail(HttpServletRequest request, HttpServletResponse response, String username)throws ServletException, IOException{
 		request.setAttribute("username", username);
 		request.setAttribute("error", true);
-		String address = "/WEB-INF/views/login.jsp";
+		String address = "/views/login.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 		dispatcher.forward(request, response);
 	}
-
 }

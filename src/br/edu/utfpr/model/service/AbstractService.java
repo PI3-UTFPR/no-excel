@@ -4,99 +4,104 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import br.edu.utfpr.model.Transaction;
 import br.edu.utfpr.model.User;
 import br.edu.utfpr.model.dao.AbstractDAO;
 import br.edu.utfpr.util.JPAUtil;
 
 public class AbstractService<PK, T> {
 
-  protected AbstractDAO<PK, T> dao;
+	protected AbstractDAO<PK, T> dao;
 
-  public void save(T entity){
-        try{
-            JPAUtil.beginTransaction();
-            dao.save(entity);
-            JPAUtil.commit();
-        }
-        catch(Exception e){
-            JPAUtil.rollBack();
-        }
-        finally{
-      JPAUtil.closeEntityManager();
-    }
-    }
+	public void save(T entity){
+		try{
+			JPAUtil.beginTransaction();            
+			dao.save(entity);
+			JPAUtil.commit();
+		}
+		catch(Exception e){            
+			JPAUtil.rollBack();
+		}
+		finally{
+			JPAUtil.closeEntityManager();
+		}
+	}
 
-  public T getById(PK pk){
-    T entity = null;
+	public boolean delete(T entity){
+		try{
+			JPAUtil.beginTransaction();
+			dao.delete(entity);
+			JPAUtil.commit();
+		}
+		catch(Exception e){
+			JPAUtil.rollBack();
+			return false;
+		}
+		finally{
+			JPAUtil.closeEntityManager();
+		}
 
-    try{
-            JPAUtil.beginTransaction();
-            entity = dao.getById(pk);
-            JPAUtil.commit();
-        }
-        catch(Exception e){
-            JPAUtil.rollBack();
-        }
-        finally{
-      JPAUtil.closeEntityManager();
-    }
+		return true;
+	}
 
-    return entity;
-  }
+	public T update(T entity){
+		try{
+			JPAUtil.beginTransaction();
+			dao.update(entity);
+			JPAUtil.commit();
+		}
+		catch(Exception e){
+			JPAUtil.rollBack();
+		}
+		finally{
+			JPAUtil.closeEntityManager();
+		}
 
-  public T delete(T entity){
-    try{
-            JPAUtil.beginTransaction();
-            dao.delete(entity);
-            JPAUtil.commit();
-        }
-    catch(Exception e){
-        JPAUtil.rollBack();
-    }
-    finally{
-      JPAUtil.closeEntityManager();
-    }
+		return entity;
+	}
 
-    return entity;
-  }
-  public T update(T entity){
-	    try{
-	            JPAUtil.beginTransaction();
-	            dao.update(entity);
-	            JPAUtil.commit();
-	        }
-	    catch(Exception e){
-	        JPAUtil.rollBack();
-	    }
-	    finally{
-	      JPAUtil.closeEntityManager();
-	    }
 
-	    return entity;
-	  }
+	public T getById(PK pk){
+		T entity = null;
 
-  public T getByProperty(String propertyName, String propertyValue){
-    T entity = null;
-    try{
-            JPAUtil.beginTransaction();
-            entity = dao.getByProperty(propertyName, propertyValue);
-            JPAUtil.commit();
-        }
-        catch(Exception e){
-            JPAUtil.rollBack();
-            e.printStackTrace();
-        }
-        finally{
-      JPAUtil.closeEntityManager();
-    }
+		try{
+			JPAUtil.beginTransaction();            
+			entity = dao.getById(pk);
+			JPAUtil.commit();
+		}
+		catch(Exception e){            
+			JPAUtil.rollBack();
+		}
+		finally{
+			JPAUtil.closeEntityManager();
+		}
 
-    return entity;
-  }
-  
-  public List<T> findAllById (String stringName, PK pk){
-	  return dao.findAllById(stringName, pk);
-  }
-  public List<T> findAll(){
-        return dao.findAll();
-    }
+		return entity;
+	}
+
+	public T getByProperty(String propertyName, String propertyValue){
+		T entity = null;		
+		try{
+			JPAUtil.beginTransaction();            
+			entity = dao.getByProperty(propertyName, propertyValue);
+			JPAUtil.commit();
+		}
+		catch(Exception e){            
+			JPAUtil.rollBack();
+			e.printStackTrace();
+		}
+		finally{
+			JPAUtil.closeEntityManager();
+		}			
+
+		return entity;
+	}
+
+	public List<T> findAll(){
+		return dao.findAll();
+	}	
+	
+	public List<Transaction> findAllById (String id, Long pk){
+		return (dao).findAllById(id, pk);
+	}
 }

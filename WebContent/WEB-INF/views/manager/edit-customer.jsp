@@ -68,5 +68,14 @@
     </div>
 </div>
 
+
 <jsp:include page="/WEB-INF/views/includes/footer.jsp"></jsp:include>
+
+<script type="text/javascript">
+jQuery(function($){
+	var value = $("input[name=value]").val();
+	$("input[name=value]").val(value.substring(3));
+});
+</script>
+
 <script type="text/javascript" src="<%= request.getContextPath() %>/js/customer.js"></script>

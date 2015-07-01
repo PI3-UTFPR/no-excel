@@ -47,7 +47,9 @@ public class EditCustomerServlet extends HttpServlet {
 			if(this.isNumeric(find))			
 				result  = customer.getByProperty("login", find.trim());
 			else
-				result  = customer.getByProperty("name", StringUtil.formalizeName(find.trim()));			
+				result  = customer.getByProperty("name", StringUtil.formalizeName(find.trim()));
+			
+			request.getSession().setAttribute("customerEdit", result);
 			
 			request.setAttribute("login", result.getLogin());
 			request.setAttribute("name", result.getName());
@@ -92,15 +94,18 @@ public class EditCustomerServlet extends HttpServlet {
 			}else{
 				CustomerService customerService = new CustomerService();
 				Long value = MoneyUtil.toLong(mapParams.get("value"));
-				customerService.update(new Customer(
-						mapParams.get("name"),
-						mapParams.get("login"),
-						mapParams.get("type"),
-						value,
-						mapParams.get("password"),
-						mapParams.get("colleger")						
-					)
-				);
+				Customer editCustomer = (Customer) request.getSession().getAttribute("customerEdit");
+				if(editCustomer != null){
+					editCustomer.setName(mapParams.get("name"));
+					editCustomer.setLogin(mapParams.get("login"));
+					editCustomer.setType(mapParams.get("type"));
+					editCustomer.setPassword(mapParams.get("password"));
+					editCustomer.setColleger(mapParams.get("colleger"));
+					editCustomer.setValue(value);
+					
+					customerService.update(editCustomer);
+				}			
+
 				result.put("Sucesso", "Cliente foi editado.");
 				request.setAttribute("flashMessage", result);
 				request.setAttribute("flashType", "success");				

@@ -17,6 +17,6 @@ public class MoneyUtil {
 	
 	public static String formatMoney(Long number){
 		NumberFormat n = NumberFormat.getCurrencyInstance(Locale.getDefault()); 
-		return n.format(number / 100.0);		
+		return n.format(number / 100);		
 	}
 }

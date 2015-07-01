@@ -17,5 +17,7 @@ window.onload = function(){
 		$('.editar').click(function(){
 			$('.registro').show("fade-in");
 		});
+		
+			
 	});
 }

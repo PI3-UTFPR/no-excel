@@ -17,18 +17,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<body>
 		<!--start-wrap--->
 		<div class="wrap">
-			<!---start-header---->
-<%-- 				<div class="header">
-					<div class="logo">
-						<h1><a href="<%= request.getContextPath() %>"> Ohh cadê a página!!!</a></h1>
-					</div>
-				</div> --%>
-			<!---End-header---->
 			<!--start-content------>
 			<div class="content">
 				<img src="<%= request.getContextPath() %>/img/not-found/error-img.png" title="error" />
 				<p><span><label>O</label>hh.....</span>A página requisitada não existe.</p>
-				<a href="<%= request.getContextPath() %>">Voltar para a página inicial</a>
+				<a href="#" onclick="window.history.back();return false;">Voltar para a página.</a>
    			</div>
 			<!--End-Cotent------>
 		</div>

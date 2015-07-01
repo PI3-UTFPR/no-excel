@@ -2,7 +2,7 @@
 
 <jsp:include page="../includes/nav_admin.jsp"/>
 
-<form method="get" action="transaction">
+<form method="POST" action="/No-excel/admin">
 <div class="container">
 	<div class="panel panel-primary">
     <div class="panel-heading">
@@ -11,11 +11,13 @@
     <div class="panel-body">
         <div class="form-group">
     <label class="control-label" for="ra">RA do Aluno</label>
-    <input type="text" class="form-control" id="ra">
+    <input type="text" class="form-control" name="ra" id="ra">
     <button type="submit" class="btn btn-primary search">Buscar</button>
 </div>
     </div>
 </div>
 </div>
 </form>
+
+
 <jsp:include page="../includes/footer.jsp"/>

@@ -74,6 +74,7 @@ public class LoginServlet extends HttpServlet {
 				String address = "/WEB-INF/views" + role + "/index.jsp";				
 				RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 				dispatcher.forward(request, response);
+				
 			}
 			else{     
 				loginFail(request, response, login);
